@@ -20,8 +20,8 @@ defmodule SharedResources.Mixfile do
   defp deps do
     [ { :cowboy, github: "extend/cowboy" },
       { :dynamo, "0.1.0.dev", github: "elixir-lang/dynamo" },
-      {:apprentice,"0.0.1",[github: "joeyjoejoejr/apprentice"]},
-      { :ecto, github: "elixir-lang/ecto" },
-      { :pgsql, github: "semiocast/pgsql" }]
+      { :apprentice,"0.0.1", github: "joeyjoejoejr/apprentice"},
+      { :exquisite, "0.0.1", github: "meh/exquisite" },
+      { :amnesia, "0.1.0", github: "meh/amnesia" } ]
   end
 end
