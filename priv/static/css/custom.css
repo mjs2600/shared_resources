@@ -1,0 +1,28 @@
+h2 {
+  border-bottom: 1px solid #666;
+}
+
+.resource-list {
+  list-style: none;
+  margin-left: 0px;
+}
+
+.resource-list li div{
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  border-left: 1px solid grey;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 20px;
+  margin-top: 40px;
+  padding: 10px;
+  width: 33.33%;
+}
+
+.resource-list li div:last-child {
+  border: none;
+}
+
+.resource-list li div a.btn {
+
+}

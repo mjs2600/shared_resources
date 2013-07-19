@@ -1,14 +1,10 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <title><%= @title %></title>
-</head>
-<body>
-  <h3>Welcome to Dynamo!</h3>
-  <ol>
-    <li>Change this template at <code>web/templates/index.html.eex</code></li>
-    <li>Add new routes at <code>web/routers/application_router.ex</code></li>
-    <li>Deploy to production with <code>MIX_ENV=prod mix do compile, server</code></li>
-  </ol>
-</body>
-</html>
+<h2>Check Out a Resource, Yo!</h2>
+<ul class="resource-list">
+  <%= Enum.map @resources, fn(resource) -> %>
+    <li>
+      <div><%= resource[:name] %></div><div><%= resource[:location]
+        %></div><div><a class="btn btn-primary <%= resource[:checked_out] && "disabled" %>"><%= resource[:checked_out] || "Check Out"
+          %></a></div>
+    </li>
+  <% end %>
+</ul>
