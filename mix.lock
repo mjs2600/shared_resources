@@ -1,5 +1,7 @@
-[ "cowboy": {:git, "git://github.com/extend/cowboy.git", "39caf34fe3bc0a3c89ac8a06428542555f8e13c1", []},
+[ "apprentice": {:git, "git://github.com/joeyjoejoejr/apprentice.git", "badc6df991e2541689390fe9e65a6761261574b2", []},
+  "cowboy": {:git, "git://github.com/extend/cowboy.git", "39caf34fe3bc0a3c89ac8a06428542555f8e13c1", []},
+  "dynamo": {:git, "git://github.com/elixir-lang/dynamo.git", "541ec3b34278fb0a4a0dcc127d80630d6300fe9a", []},
   "ex_doc": {:git, "https://github.com/elixir-lang/ex_doc.git", "4bc1e9af619fd98e51479cbe09157ff831b0d4e1", []},
   "hackney": {:git, "git://github.com/benoitc/hackney.git", "8619bbed908181805a3b6cccd87f679bf176f4dc", []},
   "mimetypes": {:git, "git://github.com/spawngrid/mimetypes.git", "47d37a977a7d633199822bf6b08353007483d00f", []},
-  "ranch": {:git, "git://github.com/extend/ranch.git", "4f70a16bbe08e446e8fec248ca345d5f8e7df038", [ref: "0.8.4"]} ]
+  "ranch": {:git, "git://github.com/extend/ranch.git", "4f70a16bbe08e446e8fec248ca345d5f8e7df038", [{:ref, "0.8.4"}]} ]
