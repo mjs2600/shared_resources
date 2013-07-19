@@ -1,5 +1,5 @@
-[ "apprentice": {:git, "git://github.com/joeyjoejoejr/apprentice.git", "badc6df991e2541689390fe9e65a6761261574b2", []},
-  "cowboy": {:git, "git://github.com/extend/cowboy.git", "39caf34fe3bc0a3c89ac8a06428542555f8e13c1", []},
+[ "apprentice": {:git, "git://github.com/joeyjoejoejr/apprentice.git", "b521e1ab79f14a2190664aad4e4bbd836b73b937", []},
+  "cowboy": {:git, "git://github.com/extend/cowboy.git", "ddefa33a38e045d1359149f911359343105a0ce0", []},
   "dynamo": {:git, "git://github.com/elixir-lang/dynamo.git", "541ec3b34278fb0a4a0dcc127d80630d6300fe9a", []},
   "ex_doc": {:git, "https://github.com/elixir-lang/ex_doc.git", "4bc1e9af619fd98e51479cbe09157ff831b0d4e1", []},
   "hackney": {:git, "git://github.com/benoitc/hackney.git", "8619bbed908181805a3b6cccd87f679bf176f4dc", []},
