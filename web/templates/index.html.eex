@@ -3,7 +3,7 @@
 <h2>Check You Out a Resource for Great Good</h2>
 <ul class="resource-list">
   <%= Enum.map @resources, fn(resource) -> %>
-    <li class="resource">
+    <li class="resource" data-id="<%= resource.id %>">
       <span class="name"><%= resource.name %></span>
       <span class="location">
         <%= if resource.checked_out_by do %>

@@ -1,9 +1,9 @@
 defmodule SharedResources.CheckOutHelper do
   def button_class(nil) do
-    'check-in'
+    'check-out'
   end
 
   def button_class(_) do
-    'check-out'
+    'check-in'
   end
 end

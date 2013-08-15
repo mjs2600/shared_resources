@@ -16,16 +16,4 @@ defmodule ApplicationRouter do
   get "/" do
     redirect conn, to: "/resources"
   end
-  
-  post "/check-in/:id" do
-    conn = conn.assign(:resources,
-                       SharedResources.Assets.resource_index)
-    conn.resp 200, Jsonex.encode [check_in: id]
-  end
-
-  post "/check-out/:id" do
-    conn = conn.assign(:resources,
-                       SharedResources.Assets.resource_index)
-    conn.resp 200, Jsonex.encode [check_out: id]
-  end
 end
