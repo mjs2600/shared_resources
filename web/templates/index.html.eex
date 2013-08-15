@@ -2,8 +2,8 @@
 <ul class="resource-list">
   <%= Enum.map @resources, fn(resource) -> %>
     <li>
-      <div><%= resource[:name] %></div><div><%= resource[:location]
-        %></div><div><a class="btn btn-primary <%= resource[:checked_out] && "disabled" %>"><%= resource[:checked_out] || "Check Out"
+      <div><%= resource.name %></div><div><%= resource.location
+        %></div><div><a class="btn btn-primary <%= resource.checked_out_by && "disabled" %>"><%= resource.checked_out_by || "Check Out"
           %></a></div>
     </li>
   <% end %>
