@@ -1,15 +1,14 @@
 defmodule ResourceRouter do
   use Dynamo.Router
-  import SharedResources.Assets
-
+  import SharedResources.Resource
 
   get "/" do
-    conn = conn.assign(:resources, resource_index)
+    conn = conn.assign(:resources, index)
     render conn, "index.html"
   end
 
   post "/" do
-    resource_create(conn.params)
+    create(conn.params)
     redirect conn, to: "/"
   end
 

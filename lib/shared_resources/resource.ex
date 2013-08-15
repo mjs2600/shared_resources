@@ -1,8 +1,8 @@
-defmodule SharedResources.Assets do
+defmodule SharedResources.Resource do
   use Amnesia
   require Exquisite
 
-  def resource_index do
+  def index do
     query = Exquisite.match SharedResources.Database.Resource
 
     response = Amnesia.transaction do
@@ -12,7 +12,7 @@ defmodule SharedResources.Assets do
     extract_response response
   end
 
-  def resource_create(params)  do
+  def create(params)  do
     name = params[:name]
     location = params[:location]
 
