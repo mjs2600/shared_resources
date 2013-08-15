@@ -5,13 +5,13 @@ defmodule SharedResources.Assets do
   def resource_index do
     query = Exquisite.match SharedResources.Database.Resource
 
-    response = Amnesia.transaction do 
-      Database.Resource.select query
+    response = Amnesia.transaction do
+      SharedResources.Database.Resource.select query
     end
 
     extract_response response
   end
-  
+
   defp extract_response({_, {_, records, _}}) do
     records
   end
