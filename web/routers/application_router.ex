@@ -14,10 +14,8 @@ defmodule ApplicationRouter do
   # forward "/posts", to: PostsRouter
 
   get "/" do
-    conn = conn.assign(:resources, [
-      [name: "Van", location: "327 Main St", checked_out: nil],
-      [name: "Conference Room", location: "329 Main St", checked_out: "Joe Jackson"]
-    ])
+    conn = conn.assign(:resources, 
+                       SharedResources.Assets.resouce_index)
     render conn, "index.html"
   end
 end
