@@ -11,18 +11,9 @@ defmodule ApplicationRouter do
 
   # It is common to break your Dynamo in many
   # routers forwarding the requests between them
-  # forward "/posts", to: PostsRouter
+  forward "/resources", to: ResourceRouter
 
   get "/" do
-    conn = conn.assign(:resources, SharedResources.Assets.resource_index)
-    render conn, "index.html"
-  end
-
-  post "/resources" do
-    redirect conn, to: "/"
-  end
-
-  get "resources/new" do
-    render conn, "new_resource.html"
+    redirect conn, to: "/resources"
   end
 end
