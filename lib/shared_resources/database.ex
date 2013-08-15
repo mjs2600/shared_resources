@@ -12,5 +12,4 @@ defdatabase SharedResources.Database do
 
   deftable Resource, [:name, :location], type: :bag
 
-
 end
