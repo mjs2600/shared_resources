@@ -12,7 +12,7 @@ defmodule SharedResources.Assets do
     extract_response response
   end
 
-  defp extract_response({_, {_, records, _}}) do
+  defp extract_response({_, records, _}) do
     records
   end
 

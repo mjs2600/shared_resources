@@ -1,5 +1,12 @@
+body {
+  background-color: #2a231a;
+  color: #eee;
+  font-family: 'Simonetta', cursive;
+}
+
 h2 {
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
 }
 
 .resource-list {
@@ -7,22 +14,43 @@ h2 {
   margin-left: 0px;
 }
 
-.resource-list li div{
-  border-bottom: 1px solid grey;
-  border-right: 1px solid grey;
-  border-left: 1px solid grey;
-  box-sizing: border-box;
-  display: inline-block;
-  font-size: 20px;
-  margin-top: 40px;
-  padding: 10px;
+.resource {
+  color: #1B1308;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: #C2BAAF;
   width: 33.33%;
+  position: relative;
+  margin-bottom: 20px;
 }
 
-.resource-list li div:last-child {
-  border: none;
+.resource .name {
+  display: block;
+  font-family: 'Spirax', cursive;
+  font-size: 40px;
 }
 
-.resource-list li div a.btn {
+.resource .check-out {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 75px;
+}
 
+.resource .location {
+  display: block;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.navbar-inner {
+  background-color: #C2BAAF;
+}
+.btn-primary {
+  background-image: linear-gradient(to bottom, #94826A, #2A231A);
+  background-color: #94826A;
+}
+
+.btn-primary:hover {
+  background-color: #2A231A;
 }
