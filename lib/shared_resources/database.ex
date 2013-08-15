@@ -10,5 +10,10 @@ defdatabase SharedResources.Database do
     wait
   end
 
-  deftable Resource, [:name, :location, :checked_out_by], type: :bag
+  deftable Resource,
+           [:id,
+            :name,
+            :location,
+            :checked_out_by],
+           type: :bag
 end

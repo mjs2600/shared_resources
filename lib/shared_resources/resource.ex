@@ -17,9 +17,19 @@ defmodule SharedResources.Resource do
     location = params[:location]
 
     Amnesia.transaction do
-      resource = SharedResources.Database.Resource[name: name, location: location]
+      resource = SharedResources.Database.Resource[name: name,
+                                                   location: location,
+                                                   id: make_id]
       resource.write
     end
+  end
+
+  def make_id do
+    time
+  end
+
+  def time do
+    :erlang.now |> tuple_to_list |> Enum.join
   end
 
   defp extract_response({_, records, _}) do
