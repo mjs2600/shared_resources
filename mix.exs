@@ -21,7 +21,6 @@ defmodule SharedResources.Mixfile do
     [ { :cowboy, github: "extend/cowboy" },
       { :dynamo, "0.1.0.dev", github: "elixir-lang/dynamo" },
       { :apprentice,"0.0.1", github: "joeyjoejoejr/apprentice"},
-      { :exquisite, "0.0.1", github: "meh/exquisite" },
       { :amnesia, "0.1.0", github: "meh/amnesia" } ]
   end
 end
