@@ -1,10 +1,22 @@
-<h2>Check Out a Resource, Yo!</h2>
+<h2>Check You Out a Resource for Great Good</h2>
 <ul class="resource-list">
   <%= Enum.map @resources, fn(resource) -> %>
-    <li>
-      <div><%= resource.name %></div><div><%= resource.location
-        %></div><div><a class="btn btn-primary <%= resource.checked_out_by && "disabled" %>"><%= resource.checked_out_by || "Check Out"
-          %></a></div>
+    <li class="resource">
+      <span class="name"><%= resource.name %></span>
+      <span class="location">
+        <%= if resource.checked_out_by do %>
+          <%= resource.checked_out_by %> has it.
+        <% else %>
+          Find it in the <%= resource.location %>.
+        <% end %>
+        </span>
+      <a class="btn btn-primary check-out">
+        <%= if resource.checked_out_by do %>
+          Check In
+        <% else %>
+          Check Out
+        <% end %>
+      </a>
     </li>
   <% end %>
 </ul>
