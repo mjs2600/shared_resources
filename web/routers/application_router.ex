@@ -15,7 +15,7 @@ defmodule ApplicationRouter do
 
   get "/" do
     conn = conn.assign(:resources, 
-                       SharedResources.Assets.resouce_index)
+                       SharedResources.Assets.resource_index)
     render conn, "index.html"
   end
 end
