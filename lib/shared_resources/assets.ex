@@ -12,6 +12,16 @@ defmodule SharedResources.Assets do
     extract_response response
   end
 
+  def resource_create(params)  do
+    name = params[:name]
+    location = params[:location]
+
+    Amnesia.transaction do
+      resource = SharedResources.Database.Resource[name: name, location: location]
+      resource.write
+    end
+  end
+
   defp extract_response({_, records, _}) do
     records
   end
