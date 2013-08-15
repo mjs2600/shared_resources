@@ -20,7 +20,8 @@ defmodule SharedResources.Mixfile do
   defp deps do
     [ { :cowboy, github: "extend/cowboy" },
       { :dynamo, "0.1.0-dev", github: "elixir-lang/dynamo" },
-      { :apprentice, github: "joeyjoejoejr/apprentice"},
-      { :amnesia, "0.1.0", github: "meh/amnesia" }]
+      { :apprentice, github: "joeyjoejoejr/apprentice" },
+      { :amnesia, "0.1.0", github: "meh/amnesia" },
+      { :jsonex, "2.0", github: "marcelog/jsonex", tag: "2.0" } ]
   end
 end

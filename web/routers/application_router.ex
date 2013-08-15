@@ -25,4 +25,16 @@ defmodule ApplicationRouter do
   get "resources/new" do
     render conn, "new_resource.html"
   end
+  
+  post "/check-in/:id" do
+    conn = conn.assign(:resources,
+                       SharedResources.Assets.resource_index)
+    conn.resp 200, Jsonex.encode [check_in: id]
+  end
+
+  post "/check-out/:id" do
+    conn = conn.assign(:resources,
+                       SharedResources.Assets.resource_index)
+    conn.resp 200, Jsonex.encode [check_out: id]
+  end
 end

@@ -20,6 +20,7 @@
         <%= content_for(:template) %>
       </section>
     </body>
-    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/check_out.js"></script>
 </html>

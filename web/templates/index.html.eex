@@ -1,3 +1,5 @@
+<% import SharedResources.CheckOutHelper %>
+
 <h2>Check You Out a Resource for Great Good</h2>
 <ul class="resource-list">
   <%= Enum.map @resources, fn(resource) -> %>
@@ -10,7 +12,7 @@
           Find it in the <%= resource.location %>.
         <% end %>
         </span>
-      <a class="btn btn-primary check-out">
+      <a class="btn btn-primary checkout <%= button_class(resource.checked_out_by) %>">
         <%= if resource.checked_out_by do %>
           Check In
         <% else %>

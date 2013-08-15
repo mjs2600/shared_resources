@@ -7,5 +7,8 @@
   "ex_doc": {:git, "https://github.com/elixir-lang/ex_doc.git", "4bc1e9af619fd98e51479cbe09157ff831b0d4e1", []},
   "exquisite": {:git, "git://github.com/meh/exquisite.git", "9b468a3d279ebd413908d66a45545c294de41423", []},
   "hackney": {:git, "git://github.com/benoitc/hackney.git", "6f9b403602371bc3d4aa0b67b1e253b105075bcf", []},
+  "json": {:git, "git://github.com/cblage/elixir-json.git", "a4a6cff65ceafefb63963cd11db14e433fc7c488", []},
+  "jsonex": {:git, "git://github.com/marcelog/jsonex.git", "746c8492d66e130ee74cb2d857f8458fe3a2c0e2", [{:tag, "2.0"}]},
+  "jsx": {:git, "git://github.com/talentdeficit/jsx.git", "cb14b92a228e51f7bdcaa7eb17f035e4a5c0b47d", [{:tag, "v1.3.3"}]},
   "mimetypes": {:git, "git://github.com/spawngrid/mimetypes.git", "e9dfab5aec98963589ecf13bdfcf0490667a730d", []},
   "ranch": {:git, "git://github.com/extend/ranch.git", "935c7c94673027c3940a771c6e8b32f77152f1c9", [{:ref, "0.8.2"}]} ]
