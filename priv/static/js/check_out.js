@@ -11,6 +11,7 @@ $(function() {
         var id = button.parent('.resource').data('id');
         var url = '/resources/' + id + '/check-in';
 
+        console.log('checking in');
         console.log(url);
 
         $.post(url, function(data) {
@@ -27,9 +28,10 @@ $(function() {
         var id = button.parent('.resource').data('id');
         var url = '/resources/' + id + '/check-out';
 
+        console.log('checking out');
         console.log(url);
 
-        $.post('/resources/5/check-out', function(data) {
+        $.post(url, function(data) {
           button.addClass('check-in');
           button.removeClass('check-out');
           button.text('Check In');
