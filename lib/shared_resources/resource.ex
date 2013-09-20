@@ -9,7 +9,7 @@ defmodule SharedResources.Resource do
       SharedResources.Database.Resource.select query
     end
 
-    extract_response response
+    SharedResources.Database.extract_response response
   end
 
   def create(params) do
@@ -19,7 +19,7 @@ defmodule SharedResources.Resource do
     Amnesia.transaction do
       resource = SharedResources.Database.Resource[name: name,
                                                    location: location,
-                                                   id: make_id]
+                                                   id: SharedResources.Database.generate_id]
       resource.write
     end
   end
@@ -44,21 +44,5 @@ defmodule SharedResources.Resource do
   def check_out(id) do
     resource = find_by_id(id)
     resource.check_out(4)
-  end
-
-  def make_id do
-    time
-  end
-
-  def time do
-    :erlang.now |> tuple_to_list |> Enum.join
-  end
-
-  defp extract_response({_, records, _}) do
-    records
-  end
-
-  defp extract_response(_) do
-    []
   end
 end

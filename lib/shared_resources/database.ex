@@ -10,6 +10,22 @@ defdatabase SharedResources.Database do
     wait
   end
 
+  def generate_id do
+    time
+  end
+
+  defp time do
+    :erlang.now |> tuple_to_list |> Enum.join
+  end
+
+  def extract_response({_, records, _}) do
+    records
+  end
+
+  def extract_response(_) do
+    []
+  end
+
   deftable User, [:id, :name, :email_address], type: :ordered_set
 
   deftable Resource, [:id, :name, :location, :user_id], type: :ordered_set do
