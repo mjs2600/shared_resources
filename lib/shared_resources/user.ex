@@ -2,14 +2,16 @@ defmodule SharedResources.User do
   use Amnesia
   require Exquisite
 
-  def find_user_by_name(id) do
+  def find_by_id(id) do
     query = Exquisite.match SharedResources.Database.User,
             where: id == id
+    find_with_query(query)
   end
 
-  def find_user_by_name(name) do
+  def find_by_name(name) do
     query = Exquisite.match SharedResources.Database.User,
             where: name == name
+    find_with_query(query)
   end
 
   defp find_with_query(query) do
