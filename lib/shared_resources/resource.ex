@@ -34,9 +34,7 @@ defmodule SharedResources.Resource do
   end
 
   def check_out(id, user_id) do
-    IO.puts inspect id
     resource = find_by_id(id)
-    IO.puts inspect resource
     resource.check_out(user_id)
   end
 end
