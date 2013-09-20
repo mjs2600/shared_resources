@@ -11,7 +11,16 @@
         <% else %>
           Find it in the <%= resource.location %>.
         <% end %>
-        </span>
+      </span>
+
+      <%= if !resource.checked_out_by! do %>
+        <select class="user-name" name="name">
+          <%= Enum.map @users, fn(user) -> %>
+            <option value="<%= user.id %>"><%= user.name %></option>
+          <% end %>
+        </select>
+      <% end %>
+      
       <a class="btn btn-primary checkout <%= button_class(resource.checked_out_by!) %>">
         <%= if resource.checked_out_by! do %>
           Check In

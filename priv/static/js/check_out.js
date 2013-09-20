@@ -11,9 +11,6 @@ $(function() {
         var id = button.parent('.resource').data('id');
         var url = '/resources/' + id + '/check-in';
 
-        console.log('checking in');
-        console.log(url);
-
         $.post(url, function(data) {
           button.addClass('check-out');
           button.removeClass('check-in');
@@ -26,12 +23,10 @@ $(function() {
       $('.resource').on('click', '.check-out', function() {
         var button = $(this);
         var id = button.parent('.resource').data('id');
+        var user_id = button.siblings('.user-name').val();
         var url = '/resources/' + id + '/check-out';
 
-        console.log('checking out');
-        console.log(url);
-
-        $.post(url, function(data) {
+        $.post(url, { user_id: user_id }, function(data) {
           button.addClass('check-in');
           button.removeClass('check-out');
           button.text('Check In');

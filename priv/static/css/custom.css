@@ -15,19 +15,22 @@ h2 {
 }
 
 .resource {
-  color: #1B1308;
-  padding: 20px;
+  background-color: #c2baaf;
   border-radius: 4px;
-  background-color: #C2BAAF;
-  width: 33.33%;
-  position: relative;
+  color: #1B1308;
   margin-bottom: 20px;
+  padding: 20px;
+  position: relative;
+  width: 50%;
 }
 
 .resource .name {
   display: block;
   font-family: 'Spirax', cursive;
   font-size: 40px;
+  line-height: 40px;
+  margin-top: -5px;
+  width: 60%;
 }
 
 .resource .checkout {
@@ -38,21 +41,33 @@ h2 {
 }
 
 .resource .location {
-  display: block;
+  display: inline-block;
   margin-top: 20px;
+  font-size: 18px;
+  width: 60%;
+}
+
+.user-name {
+  font-family: 'Simonetta', cursive;
   font-size: 16px;
+  margin: 0;
+  position: absolute;
+  right: 20px;
+  top: 70px;
+  width: auto;
 }
 
 .navbar-inner {
-  background-color: #C2BAAF;
+  background-color: #c2baaf;
 }
+
 .btn-primary {
-  background-image: linear-gradient(to bottom, #94826A, #2A231A);
-  background-color: #94826A;
+  background-image: linear-gradient(to bottom, #94826a, #2a231a);
+  background-color: #94826a;
 }
 
 .btn-primary:hover {
-  background-color: #2A231A;
+  background-color: #2a231a;
 }
 
 ul#users li {

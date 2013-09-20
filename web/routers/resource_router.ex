@@ -6,6 +6,7 @@ defmodule ResourceRouter do
 
   get "/" do
     conn = conn.assign(:resources, index)
+    conn = conn.assign(:users, SharedResources.User.index)
     render conn, "resources/index"
   end
 
@@ -20,15 +21,13 @@ defmodule ResourceRouter do
 
   post "/:id/check-in" do
     check_in(id)
-
-    conn = conn.assign(:resources, index)
     conn.resp 200, Jsonex.encode [check_in: id]
   end
 
   post "/:id/check-out" do
-    check_out(id)
-
-    conn = conn.assign(:resources, index)
+    user_id = conn.params["user_id"]
+    { user_id, _ } = String.to_integer(user_id)
+    check_out(id, user_id)
     conn.resp 200, Jsonex.encode [check_out: id]
   end
 end
