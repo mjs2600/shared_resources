@@ -12,7 +12,7 @@
     <header class="navbar">
       <nav class="navbar-inner">
         <ul class="nav">
-          <li class="brand">Shared Resources</li>
+          <li class="brand"><a href="/">Shared Resources</a></li>
         </ul>
         <a href="/resources/new" class="btn pull-right">Add New Resource</a>
         <a href="/users/new" class="btn pull-right">Add New User</a>
