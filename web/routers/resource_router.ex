@@ -12,7 +12,7 @@ defmodule ResourceRouter do
 
   post "/" do
     create(conn.params)
-    redirect conn, to: "resources/"
+    redirect conn, to: "/"
   end
 
   get "/new" do
