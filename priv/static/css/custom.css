@@ -54,3 +54,8 @@ h2 {
 .btn-primary:hover {
   background-color: #2A231A;
 }
+
+ul#users li {
+  line-height: 40px;
+  list-style-type: none;
+}

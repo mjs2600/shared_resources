@@ -1,18 +1,17 @@
 defmodule UserRouter do
   use Dynamo.Router
 
-  # import SharedResources.User
+  import SharedResources.User
   require Exquisite
 
   get "/" do
-    foo = [{0, "Apple"}, {1, "Orange"}, {2, "Banana"}]
-    conn = conn.assign(:users, foo)
-    render conn, "usersindex"
+    conn = conn.assign(:users, index)
+    render conn, "users/index"
   end
 
   post "/" do
-    # create(conn.params)
-    redirect conn, to: "/"
+    create(conn.params)
+    redirect conn, to: "/users"
   end
 
   get "/new" do

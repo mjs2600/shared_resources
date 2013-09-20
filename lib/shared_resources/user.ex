@@ -2,7 +2,9 @@ defmodule SharedResources.User do
   use Amnesia
   require Exquisite
 
-  def create(name, email_address) do
+  def create(params) do
+    name = params[:name]
+    email_address = params[:email_address]
     Amnesia.transaction do
       user = SharedResources.Database.User[name: name,
                                                    email_address: email_address,

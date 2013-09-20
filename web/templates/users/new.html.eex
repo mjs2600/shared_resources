@@ -1,0 +1,17 @@
+<h2>Forge You a New User For Great Good</h2>
+<form action="/users" method="post" class="form-horizontal">
+  <section class="control-group">
+    <input type="text" name="name" placeholder="Name"
+      class="controls">
+  </section>
+
+  <section class="control-group">
+    <input type="text" name="email_address" placeholder="Email Address"
+      class="controls">
+  </section>
+
+  <section class="control-group">
+    <input type="submit" value="Forge User" class="btn controls">
+  </section>
+</form>
+

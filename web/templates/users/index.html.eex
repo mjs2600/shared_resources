@@ -1,0 +1,8 @@
+<h2>Look You At A User for Great Good<h2>
+<ul id="users">
+  <%= Enum.map @users, fn(user) -> %>
+    <li><%= user.name %> : <a href="mailto:<%= user.email_address %>"><%=
+      user.email_address %></a></li>
+  <% end %>
+</ul>
+<a href="/users/new" class="btn btn-primary">Forge You a User</a>

@@ -6,16 +6,16 @@ defmodule ResourceRouter do
 
   get "/" do
     conn = conn.assign(:resources, index)
-    render conn, "usersindex"
+    render conn, "resources/index"
   end
 
   post "/" do
     create(conn.params)
-    redirect conn, to: "/"
+    redirect conn, to: "resources/"
   end
 
   get "/new" do
-    render conn, "new_resource.html"
+    render conn, "resources/new"
   end
 
   post "/:id/check-in" do
