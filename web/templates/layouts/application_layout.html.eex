@@ -15,6 +15,7 @@
           <li class="brand">Shared Resources</li>
         </ul>
         <a href="/resources/new" class="btn pull-right">Add New Resource</a>
+        <a href="/users/new" class="btn pull-right">Add New User</a>
       </nav>
     </header>
 

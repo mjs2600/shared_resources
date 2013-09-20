@@ -61,6 +61,9 @@ h2 {
   background-color: #c2baaf;
 }
 
+nav a{
+  margin-left: 10px;
+}
 .btn-primary {
   background-image: linear-gradient(to bottom, #94826a, #2a231a);
   background-color: #94826a;
