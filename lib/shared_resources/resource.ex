@@ -25,15 +25,7 @@ defmodule SharedResources.Resource do
   end
 
   def find_by_id(id) do
-    query = Exquisite.match SharedResources.Database.Resource,
-            where: id == id
-
-    Amnesia.transaction do
-      result = SharedResources.Database.Resource.select query
-      {_, [resource | _], _} = result
-
-      resource
-    end
+    SharedResources.Database.Resource.read!(id)
   end
 
   def check_in(id) do

@@ -24,9 +24,7 @@ defmodule SharedResources.User do
   end
 
   def find_by_id(id) do
-    query = Exquisite.match SharedResources.Database.User,
-            where: id == id
-    find_with_query(query)
+    SharedResources.Database.User.read!(id)
   end
 
   def find_by_name(name) do
