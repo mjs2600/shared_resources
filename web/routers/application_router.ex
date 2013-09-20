@@ -11,6 +11,7 @@ defmodule ApplicationRouter do
 
   # It is common to break your Dynamo in many
   # routers forwarding the requests between them
+  forward "/users", to: UserRouter
   forward "/resources", to: ResourceRouter
 
   get "/" do

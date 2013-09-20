@@ -3,11 +3,8 @@ defmodule SharedResources.User do
   require Exquisite
 
   def create(name, email_address) do
-    name = params[:name]
-    location = params[:email_address]
-
     Amnesia.transaction do
-      user = SharedResources.Database.Resource[name: name,
+      user = SharedResources.Database.User[name: name,
                                                    email_address: email_address,
                                                    id: SharedResources.Database.generate_id]
       user.write
@@ -15,10 +12,10 @@ defmodule SharedResources.User do
   end
 
   def index do
-    query = Exquisite.match SharedResources.Database.Resource
+    query = Exquisite.match SharedResources.Database.User
 
     response = Amnesia.transaction do
-      SharedResources.Database.Resource.select query
+      SharedResources.Database.User.select query
     end
 
     SharedResources.Database.extract_response response
