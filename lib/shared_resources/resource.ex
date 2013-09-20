@@ -23,29 +23,27 @@ defmodule SharedResources.Resource do
       resource.write
     end
   end
-  
-  def check_in(id) do
+
+  def find_by_id(id) do
     query = Exquisite.match SharedResources.Database.Resource,
             where: id == id
 
     Amnesia.transaction do
       result = SharedResources.Database.Resource.select query
       {_, [resource | _], _} = result
-      resource.checked_out_by(nil)
-      resource.write
+
+      resource
     end
   end
 
-  def check_out(id) do
-    query = Exquisite.match SharedResources.Database.Resource,
-            where: id == id
+  def check_in(id) do
+    resource = find_by_id(id)
+    resource.check_in()
+  end
 
-    Amnesia.transaction do
-      result = SharedResources.Database.Resource.select query
-      {_, [resource | _], _} = result
-      #resource.write
-      resource.checked_out_by('Michael')
-    end
+  def check_out(id) do
+    resource = find_by_id(id)
+    resource.check_out(4)
   end
 
   def make_id do

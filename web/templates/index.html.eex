@@ -6,14 +6,14 @@
     <li class="resource" data-id="<%= resource.id %>">
       <span class="name"><%= resource.name %></span>
       <span class="location">
-        <%= if resource.checked_out_by do %>
-          <%= resource.checked_out_by %> has it.
+        <%= if resource.checked_out_by! do %>
+          <%= resource.checked_out_by!.name %> has it.
         <% else %>
           Find it in the <%= resource.location %>.
         <% end %>
         </span>
-      <a class="btn btn-primary checkout <%= button_class(resource.checked_out_by) %>">
-        <%= if resource.checked_out_by do %>
+      <a class="btn btn-primary checkout <%= button_class(resource.checked_out_by!) %>">
+        <%= if resource.checked_out_by! do %>
           Check In
         <% else %>
           Check Out

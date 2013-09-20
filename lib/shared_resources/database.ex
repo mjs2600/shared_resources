@@ -6,11 +6,11 @@ defdatabase SharedResources.Database do
   def start do
     Amnesia.Schema.create
     Amnesia.start
-    create( disk: [node])
+    create(disk: [node])
     wait
   end
 
-  deftable User
+  deftable User, [:id, :name, :email_address], type: :ordered_set
 
   deftable Resource, [:id, :name, :location, :user_id], type: :ordered_set do
     def checked_out_by(self) do
@@ -32,8 +32,5 @@ defdatabase SharedResources.Database do
         self.user_id(user_id).write
       end
     end
-  end
-
-  deftable User, [:id, :user_name, :email_address], type: :ordered_set do
   end
 end
