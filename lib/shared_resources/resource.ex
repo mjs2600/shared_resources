@@ -12,7 +12,7 @@ defmodule SharedResources.Resource do
     extract_response response
   end
 
-  def create(params)  do
+  def create(params) do
     name = params[:name]
     location = params[:location]
 
@@ -21,6 +21,30 @@ defmodule SharedResources.Resource do
                                                    location: location,
                                                    id: make_id]
       resource.write
+    end
+  end
+  
+  def check_in(id) do
+    query = Exquisite.match SharedResources.Database.Resource,
+            where: id == id
+
+    Amnesia.transaction do
+      result = SharedResources.Database.Resource.select query
+      {_, [resource | _], _} = result
+      resource.checked_out_by(nil)
+      resource.write
+    end
+  end
+
+  def check_out(id) do
+    query = Exquisite.match SharedResources.Database.Resource,
+            where: id == id
+
+    Amnesia.transaction do
+      result = SharedResources.Database.Resource.select query
+      {_, [resource | _], _} = result
+      #resource.write
+      resource.checked_out_by('Michael')
     end
   end
 
@@ -39,5 +63,4 @@ defmodule SharedResources.Resource do
   defp extract_response(_) do
     []
   end
-
 end
