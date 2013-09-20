@@ -1,6 +1,10 @@
 defmodule ResourceRouter do
   use Dynamo.Router
+  use Amnesia
+  
   import SharedResources.Resource
+  require Exquisite
+  
 
   get "/" do
     conn = conn.assign(:resources, index)
@@ -17,6 +21,15 @@ defmodule ResourceRouter do
   end
 
   post "/:id/check-in" do
+    query = Exquisite.match SharedResources.Database.Resource,
+            where: id == id
+
+    response = Amnesia.transaction do
+      resource = SharedResources.Database.Resource.select query
+      resource.checked_out_by(nil)
+      resource.write
+    end
+    
     conn = conn.assign(:resources, index)
     conn.resp 200, Jsonex.encode [check_in: id]
   end
