@@ -3,7 +3,8 @@
 <h2>Check You Out a Resource for Great Good</h2>
 <ul class="resource-list">
   <%= Enum.map @resources, fn(resource) -> %>
-    <li class="resource" data-id="<%= resource.id %>">
+  <li class="resource" data-checked-out="<%= !!resource.checked_out_by! %>"
+    data-id="<%= resource.id %>">
       <span class="name"><%= resource.name %></span>
       <span class="location">
         <%= if resource.checked_out_by! do %>
@@ -13,14 +14,12 @@
         <% end %>
       </span>
 
-      <%= if !resource.checked_out_by! do %>
-        <select class="user-name" name="name">
-          <%= Enum.map @users, fn(user) -> %>
-            <option value="<%= user.id %>"><%= user.name %></option>
-          <% end %>
-        </select>
-      <% end %>
-      
+      <select class="user-name" name="name">
+        <%= Enum.map @users, fn(user) -> %>
+          <option value="<%= user.id %>"><%= user.name %></option>
+        <% end %>
+      </select>
+
       <a class="btn btn-primary checkout <%= button_class(resource.checked_out_by!) %>">
         <%= if resource.checked_out_by! do %>
           Check In

@@ -19,6 +19,7 @@ h2 {
   border-radius: 4px;
   color: #1B1308;
   margin-bottom: 20px;
+  min-height: 80px;
   padding: 20px;
   position: relative;
   width: 50%;
@@ -76,4 +77,8 @@ nav a{
 ul#users li {
   line-height: 40px;
   list-style-type: none;
+}
+
+.navbar .nav>li.brand>a {
+  padding: 0;
 }

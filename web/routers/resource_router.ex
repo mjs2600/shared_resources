@@ -25,8 +25,7 @@ defmodule ResourceRouter do
   end
 
   post "/:id/check-out" do
-    user_id = conn.params["user_id"]
-    { user_id, _ } = String.to_integer(user_id)
+    user_id = conn.params[:user_id]
     check_out(id, user_id)
     conn.resp 200, Jsonex.encode [check_out: id]
   end

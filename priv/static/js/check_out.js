@@ -1,43 +1,53 @@
 $(function() {
   window.CheckOut = (function() {
     var initialize = function() {
-      checkIn();
-      checkOut();
-    }
-    
-    function checkIn() {
-      $('.resource').on('click', '.check-in', function() {
-        var button = $(this);
-        var id = button.parent('.resource').data('id');
-        var url = '/resources/' + id + '/check-in';
-
-        $.post(url, function(data) {
-          button.addClass('check-out');
-          button.removeClass('check-in');
-          button.text('Check Out');
-        });
-      });
+      checkOutListener();
     }
 
-    function checkOut() {
-      $('.resource').on('click', '.check-out', function() {
+    function renderCheckOut(resource) {
+      var button = resource.find("a");
+      button.addClass('check-in');
+      button.removeClass('check-out');
+      button.text('Check In');
+      resource.find(".location").hide();
+      resource.find(".user-name").hide();
+      resource.data('checked-out', "true");
+    }
+
+    function renderCheckIn(resource) {
+      var button = resource.find("a");
+      button.addClass('check-out');
+      button.removeClass('check-in');
+      button.text('Check Out');
+      resource.find(".location").hide();
+      resource.find(".user-name").show();
+      resource.data('checked-out', "false");
+    }
+
+    function checkOutListener() {
+      $('.resource').on('click', '.checkout', function() {
         var button = $(this);
-        var id = button.parent('.resource').data('id');
+        var resource = button.parent('.resource')
+        var id = resource.data('id');
         var user_id = button.siblings('.user-name').val();
-        var url = '/resources/' + id + '/check-out';
+        var checkedOut = resource.data('checked-out') === "true"
+        var route = checkedOut ? "check-in" : "check-out"
+        var url = '/resources/' + id + '/' + route;
 
         $.post(url, { user_id: user_id }, function(data) {
-          button.addClass('check-in');
-          button.removeClass('check-out');
-          button.text('Check In');
+          if (checkedOut) {
+            renderCheckIn(resource);
+          }else {
+            renderCheckOut(resource);
+          }
         });
       });
     }
-    
+
     return {
       initialize: initialize
     };
   })();
-  
+
   window.CheckOut.initialize();
 });
