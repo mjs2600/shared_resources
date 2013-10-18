@@ -29,6 +29,10 @@ defdatabase SharedResources.Database do
   deftable User, [:id, :name, :email_address], type: :ordered_set
 
   deftable Resource, [:id, :name, :location, :user_id], type: :ordered_set do
+    def checked_out?(self) do
+      !!self.checked_out_by!
+    end
+
     def checked_out_by(self) do
       User.read(self.user_id)
     end
