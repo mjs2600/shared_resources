@@ -2,28 +2,38 @@
 (function() {
   $(function() {
     return window.Checkout = (function() {
-      var createStreams, initialize, initializeTextTransformer, updateText;
+      var checkoutItem, createStreams, foo, initialize, transformText;
       initialize = function() {
         return createStreams();
       };
       createStreams = function() {
-        var checkoutElem, checkoutStream, resource;
-        resource = $('.resource');
-        checkoutElem = $(resource).find('.checkout');
+        var checkoutElem, checkoutStream, targetStream;
+        checkoutElem = $('.resource').find('.checkout');
         checkoutStream = checkoutElem.asEventStream('click');
-        return initializeTextTransformer(checkoutStream);
-      };
-      initializeTextTransformer = function(checkoutStream) {
-        var targetStream;
         targetStream = checkoutStream.map(function(event) {
           return event.target;
         });
-        return targetStream.onValue(function(target) {
-          return updateText(target);
+        return targetStream.onValue(checkoutItem);
+      };
+      checkoutItem = function(target) {
+        var action, resource, responseStream, userId;
+        resource = $(target).closest('.resource');
+        userId = resource.find('.user-name').val();
+        action = resource.find('.checkout');
+        responseStream = Bacon.fromPromise($.post("/resources/" + (resource.data('id')) + "/check-out", {
+          user_id: userId
+        }));
+        return foo(responseStream, target);
+      };
+      foo = function(stream, target) {
+        var _this = this;
+        this.target = target;
+        return stream.onValue(function(response, target) {
+          return transformText(response, _this.target);
         });
       };
-      updateText = function(target) {
-        return console.log('Test');
+      transformText = function(response, target) {
+        return $(target).closest('.location').text(response.action_text);
       };
       return initialize();
     })();
