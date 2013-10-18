@@ -8,20 +8,22 @@
       };
       createStreams = function() {
         var checkoutElem, checkoutStream, resource;
-        resource = $(".resource");
+        resource = $('.resource');
         checkoutElem = $(resource).find('.checkout');
         checkoutStream = checkoutElem.asEventStream('click');
         return initializeTextTransformer(checkoutStream);
       };
       initializeTextTransformer = function(checkoutStream) {
-        return checkoutStream.map(function(event) {
+        var targetStream;
+        targetStream = checkoutStream.map(function(event) {
           return event.target;
-        }).onValue(function(target) {
+        });
+        return targetStream.onValue(function(target) {
           return updateText(target);
         });
       };
       updateText = function(target) {
-        return console.log("HI");
+        return console.log('Test');
       };
       return initialize();
     })();
