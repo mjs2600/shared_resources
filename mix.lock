@@ -1,4 +1,4 @@
-[ "amnesia": {:git, "git://github.com/meh/amnesia.git", "40fbe4caed1e8504358549331d4a4a50d087ef9e", []},
+[ "amnesia": {:git, "git://github.com/SciMed/amnesia.git", "5b5e4862b21a062636f88204d49bfab1b7f59810", []},
   "continuum": {:git, "git://github.com/meh/continuum.git", "6dacfb669cfd1c7f4d7f8d51189a7656323e93b0", []},
   "cowboy": {:git, "git://github.com/extend/cowboy.git", "4769412daaff2be53cb7d7391d0a196acb6346c3", []},
   "cowlib": {:git, "git://github.com/extend/cowlib.git", "2f35af5b0a67f591dde5ae4305a9587988a37c0c", [{:ref, "0.1.0"}]},
