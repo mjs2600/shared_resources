@@ -23,7 +23,8 @@
       <%= content_for(:template) %>
     </section>
 
-    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="/static/js/bower_components/jquery/jquery.min.js"></script>
+    <script src="/static/js/bower_components/bacon/dist/Bacon.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/check_out.js"></script>
   </body>
