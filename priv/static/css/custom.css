@@ -36,6 +36,12 @@ h2 {
 
 .resource .name a {
   color: #1B1308;
+  display: block;
+  font-family: 'Spirax', cursive;
+  font-size: 40px;
+  line-height: 40px;
+  margin-top: -5px;
+  width: 60%;
 }
 
 .resource .checkout {
