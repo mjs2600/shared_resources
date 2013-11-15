@@ -2,13 +2,13 @@
 (function() {
   $(function() {
     window.SharedResources || (window.SharedResources = {});
-    SharedResources.Checkout = (function() {
+    SharedResources.newCheckout = function() {
       var action, changeInterface, checkoutItem, createStreams, initializeTextTransformer, toggleUserMenu, transformActionClass, transformActionText, transformResourceData, transformStatusMessage;
       createStreams = function() {
         var checkoutElem, checkoutStream;
         checkoutElem = $('.resource').find('.checkout');
         checkoutStream = checkoutElem.asEventStream('click');
-        return initializeTextTransformer(checkoutStream);
+        return this.initializeTextTransformer(checkoutStream);
       };
       initializeTextTransformer = function(checkoutStream) {
         var targetStream;
@@ -67,9 +67,19 @@
         return route;
       };
       return {
-        createStreams: createStreams
+        createStreams: createStreams,
+        initializeTextTransformer: initializeTextTransformer,
+        checkoutItem: checkoutItem,
+        changeInterface: changeInterface,
+        transformActionText: transformActionText,
+        transformActionClass: transformActionClass,
+        transformResourceData: transformResourceData,
+        transformStatusMessage: transformStatusMessage,
+        toggleUserMenu: toggleUserMenu,
+        action: action
       };
-    })();
+    };
+    SharedResources.Checkout = SharedResources.newCheckout();
     return SharedResources.Checkout.createStreams();
   });
 

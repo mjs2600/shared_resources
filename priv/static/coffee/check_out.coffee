@@ -1,11 +1,11 @@
 $ ->
   window.SharedResources ||= {}
 
-  SharedResources.Checkout = do ->
+  SharedResources.newCheckout = ->
     createStreams = ->
       checkoutElem = $('.resource').find('.checkout')
       checkoutStream = checkoutElem.asEventStream('click')
-      initializeTextTransformer(checkoutStream)
+      @initializeTextTransformer(checkoutStream)
 
     initializeTextTransformer = (checkoutStream) ->
       targetStream = checkoutStream.map((event) -> event.target)
@@ -53,6 +53,18 @@ $ ->
 
       route
 
-    createStreams: createStreams
+    {
+      createStreams: createStreams
+      initializeTextTransformer: initializeTextTransformer
+      checkoutItem: checkoutItem
+      changeInterface: changeInterface
+      transformActionText: transformActionText
+      transformActionClass: transformActionClass
+      transformResourceData: transformResourceData
+      transformStatusMessage: transformStatusMessage
+      toggleUserMenu: toggleUserMenu
+      action: action
+    }
 
+  SharedResources.Checkout = SharedResources.newCheckout()
   SharedResources.Checkout.createStreams()
