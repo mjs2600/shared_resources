@@ -2,6 +2,7 @@ defmodule ResourceRouter do
   use Dynamo.Router
 
   import SharedResources.Resource
+  import SharedResources.CheckOutHelper
   require Exquisite
 
   get "/" do
@@ -21,12 +22,20 @@ defmodule ResourceRouter do
 
   post "/:id/check-in" do
     check_in(id)
-    conn.resp 200, Jsonex.encode [check_in: id]
+    conn.resp 200, Jsonex.encode [
+      check_in: id,
+      action_text: action_text(true),
+      action_element_class: action_element_class(true),
+    ]
   end
 
   post "/:id/check-out" do
     user_id = conn.params[:user_id]
     check_out(id, user_id)
-    conn.resp 200, Jsonex.encode [check_out: id]
+    conn.resp 200, Jsonex.encode [
+      check_out: id,
+      action_text: action_text(true),
+      action_element_class: action_element_class(true),
+    ]
   end
 end

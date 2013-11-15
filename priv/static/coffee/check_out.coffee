@@ -5,18 +5,29 @@ $ ->
       createStreams()
 
     createStreams = ->
-      resource = $('.resource')
-      checkoutElem = $(resource).find('.checkout')
+      checkoutElem = $('.resource').find('.checkout')
       checkoutStream = checkoutElem.asEventStream('click')
       initializeTextTransformer(checkoutStream)
 
-    checkoutResource
-
     initializeTextTransformer = (checkoutStream) ->
       targetStream = checkoutStream.map((event) -> event.target)
-      targetStream.onValue((target) -> updateText(target))
+      targetStream.onValue checkoutItem
 
-    updateText = (target) ->
-      console.log 'Test'
+    checkoutItem = (target) ->
+      resource = $(target).closest('.resource')
+      userId = resource.find('.user-name').val()
+      # Do something to pull the last class off the element below
+      action = resource.find('.checkout')
+      # Don't check out all the time. Change the URL.
+      responseStream = Bacon.fromPromise($.post("/resources/#{resource.data('id')}/check-out", {user_id: userId}))
+      # Rename foo
+      foo(responseStream, target)
 
+    foo = (stream, target) ->
+      @target = target
+      stream.onValue (response, target) =>
+        transformText(response, @target)
+
+    transformText = (response, target) ->
+      $(target).closest('.location').text(response.action_text)
     initialize()

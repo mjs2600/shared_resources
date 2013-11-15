@@ -1,10 +1,10 @@
 defmodule SharedResources.CheckOutHelper do
   def action_element_class(true) do
-    'check-out'
+    "check-out"
   end
 
   def action_element_class(false) do
-    'check-in'
+    "check-in"
   end
 
   def status_message(true, resource) do
@@ -16,10 +16,10 @@ defmodule SharedResources.CheckOutHelper do
   end
 
   def action_text(true) do
-    'Check In'
+    "Check In"
   end
 
   def action_text(false) do
-    'Check Out'
+    "Check Out"
   end
 end

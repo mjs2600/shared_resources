@@ -1,3 +1,4 @@
+/*
 $(function() {
   window.CheckOut = (function() {
     var initialize = function() {
@@ -37,7 +38,7 @@ $(function() {
         $.post(url, { user_id: user_id }, function(data) {
           if (checkedOut) {
             renderCheckIn(resource);
-          }else {
+          } else {
             renderCheckOut(resource);
           }
         });
@@ -51,3 +52,4 @@ $(function() {
 
   window.CheckOut.initialize();
 });
+*/
