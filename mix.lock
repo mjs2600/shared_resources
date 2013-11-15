@@ -1,4 +1,5 @@
 [ "amnesia": {:git, "git://github.com/meh/amnesia.git", "5bd8d098f0e18e03affc72a0c388427df3d0f223", []},
+  "bcrypt": {:git, "git://github.com/smarkets/erlang-bcrypt.git", "14641089aa8ad8f9c17886c3ecf534868a282431", []},
   "continuum": {:git, "git://github.com/meh/continuum.git", "c19240908b876667a07fd44c0cec7befed713e2e", []},
   "cowboy": {:git, "git://github.com/extend/cowboy.git", "5a25c7f7f2167b8cef03129553e56f422a9890f2", []},
   "cowlib": {:git, "git://github.com/extend/cowlib.git", "63298e8e160031a70efff86a1acde7e7db1fcda6", [{:ref, "0.4.0"}]},

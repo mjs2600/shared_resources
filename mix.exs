@@ -13,7 +13,7 @@ defmodule SharedResources.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    [ applications: [:cowboy, :dynamo],
+    [ applications: [:cowboy, :dynamo, :bcrypt],
       mod: { SharedResources, [] } ]
   end
 
@@ -21,6 +21,7 @@ defmodule SharedResources.Mixfile do
     [ { :cowboy, github: "extend/cowboy" },
       { :dynamo, github: "elixir-lang/dynamo" },
       { :amnesia, github: "meh/amnesia" },
-      { :jsonex, github: "marcelog/jsonex" } ]
+      { :jsonex, github: "marcelog/jsonex" },
+      { :bcrypt, github: "smarkets/erlang-bcrypt" }]
   end
 end
