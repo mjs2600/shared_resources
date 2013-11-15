@@ -48,6 +48,14 @@ h2 {
   width: 60%;
 }
 
+.resource .checked-in {
+  display: inline;
+}
+
+.resource .checked-out {
+  display: none;
+}
+
 .user-name {
   font-family: 'Simonetta', cursive;
   font-size: 16px;

@@ -10,7 +10,7 @@
         <%= status_message(resource.checked_out?, resource) %>
       </span>
 
-      <select class="user-name" name="name">
+      <select class="user-name <%= status_class(resource.checked_out?) %>" name="name">
         <%= Enum.map @users, fn(user) -> %>
           <option value="<%= user.id %>"><%= user.name %></option>
         <% end %>
