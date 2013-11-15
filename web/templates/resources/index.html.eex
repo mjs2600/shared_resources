@@ -5,7 +5,9 @@
   <%= Enum.map @resources, fn(resource) -> %>
   <li class="resource" data-checked-out="<%= resource.checked_out? %>"
     data-id="<%= resource.id %>">
-      <span class="name"><%= resource.name %></span>
+      <span class="name">
+        <a href="/resources/<%= resource.id %>/edit"><%= resource.name %></a>
+      </span>
       <span class="location">
         <%= status_message(resource.checked_out?, resource) %>
       </span>

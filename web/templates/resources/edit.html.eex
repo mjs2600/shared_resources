@@ -1,0 +1,14 @@
+<h2>Edit You a Resource</h2>
+<form action="/resources/<%= @resource.id %>" method="post" class="form-horizontal">
+  <section class="control-group">
+    <input type="text" name="name" placeholder="Name" class="controls" value="<%= @resource.name %>">
+  </section>
+
+  <section class="control-group">
+    <input type="text" name="location" placeholder="Location" class="controls" value="<%= @resource.location %>">
+  </section>
+
+  <section class="control-group">
+    <input type="submit" value="Update Resource" class="btn controls">
+  </section>
+</form>

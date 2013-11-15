@@ -23,6 +23,16 @@ defmodule SharedResources.Resource do
       resource.write
     end
   end
+  
+  def update(params) do
+    resource = find_by_id(params[:id])
+    location = params[:location] || resource.location
+    name = params[:name] || resource.name
+
+    Amnesia.transaction do
+      resource.location(location).name(name).write
+    end
+  end
 
   def find_by_id(id) do
     SharedResources.Database.Resource.read!(id)

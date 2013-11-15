@@ -15,6 +15,16 @@ defmodule ResourceRouter do
     create(conn.params)
     redirect conn, to: "/"
   end
+  
+  get "/:id/edit" do
+    conn = conn.assign(:resource, find_by_id(id))
+    render conn, "resources/edit"
+  end
+  
+  post "/:id" do
+    update(conn.params)
+    redirect conn, to: "/resources"
+  end
 
   get "/new" do
     render conn, "resources/new"
