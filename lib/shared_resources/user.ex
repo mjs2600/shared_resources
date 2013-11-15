@@ -5,10 +5,13 @@ defmodule SharedResources.User do
   def create(params) do
     name = params[:name]
     email_address = params[:email_address]
+    {encrypted_password, salt} = SharedResources.User.Password.create(params[:password])
     Amnesia.transaction do
       user = SharedResources.Database.User[name: name,
-                                                   email_address: email_address,
-                                                   id: SharedResources.Database.generate_id]
+                                           email_address: email_address,
+                                           id: SharedResources.Database.generate_id,
+                                           salt: salt,
+                                           encrypted_password: encrypted_password]
       user.write
     end
   end

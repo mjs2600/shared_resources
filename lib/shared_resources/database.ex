@@ -26,7 +26,15 @@ defdatabase SharedResources.Database do
     []
   end
 
-  deftable User, [:id, :name, :email_address], type: :ordered_set
+  deftable User, [:id, :name, :email_address, :encrypted_password, :salt], type: :ordered_set do
+    def check_password(self, password) do
+      self.encrypted_password == SharedResources.User.Password.encrypt(password)
+    end
+    
+    def set_password(self, password) do
+      self.encrypted_password(SharedResources.User.Password.encrypt(password)).write!
+    end
+  end
 
   deftable Resource, [:id, :name, :location, :user_id], type: :ordered_set do
     def checked_out?(self) do
