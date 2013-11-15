@@ -20,7 +20,7 @@ defmodule SharedResources.Mixfile do
   defp deps do
     [ { :cowboy, github: "extend/cowboy" },
       { :dynamo, github: "elixir-lang/dynamo" },
-      { :amnesia, github: "SciMed/amnesia" },
+      { :amnesia, github: "meh/amnesia" },
       { :jsonex, github: "marcelog/jsonex" } ]
   end
 end
