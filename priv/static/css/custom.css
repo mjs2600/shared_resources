@@ -34,6 +34,10 @@ h2 {
   width: 60%;
 }
 
+.resource .name a {
+  color: #1B1308;
+}
+
 .resource .checkout {
   position: absolute;
   right: 20px;
