@@ -30,7 +30,7 @@ defdatabase SharedResources.Database do
     def check_password(self, password) do
       self.encrypted_password == SharedResources.User.Password.encrypt(password)
     end
-    
+
     def set_password(self, password) do
       self.encrypted_password(SharedResources.User.Password.encrypt(password)).write!
     end
