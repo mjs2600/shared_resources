@@ -15,6 +15,11 @@ defmodule ResourceRouter do
     create(conn.params)
     redirect conn, to: "/"
   end
+  
+  put "/:id" do
+    update(conn.params)
+    
+  end
 
   get "/new" do
     render conn, "resources/new"
