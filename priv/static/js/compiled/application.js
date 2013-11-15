@@ -26,13 +26,12 @@
         responseStream = Bacon.fromPromise($.post(path, {
           user_id: userId
         }));
-        console.log(path);
         return changeInterface(responseStream, target);
       };
       changeInterface = function(stream, target) {
         var _this = this;
         this.target = $(target);
-        return stream.onValue(function(response, target) {
+        return stream.onValue(function(response) {
           var responseObject;
           responseObject = JSON.parse(response);
           transformActionText(responseObject.action_text, _this.target);
