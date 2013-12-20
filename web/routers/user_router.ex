@@ -29,7 +29,7 @@ defmodule UserRouter do
     user = authenticate(conn.params[:email_address], conn.params[:password])
     if user do
       conn = put_session(conn, :user_id, user.id)
-      conn = conn.assign(:notices, "You logged in!!!")
+      conn = put_session(conn, :notices, "You logged in!!!")
       redirect conn, to: "/resources"
     else
       conn = conn.assign(:errors, "You done messed up")
@@ -39,7 +39,7 @@ defmodule UserRouter do
   
   get "/logout" do
     conn = delete_session(conn, :user_id)
-    conn = conn.assign(:notices, "Thanks for visiting \"Shared Resources\"&copy;!")
+    conn = put_session(conn, :notices, "Thanks for visiting \"Shared Resources\"&copy;, your center for resources that need sharing!")
     redirect conn, to: "/resources"
   end
 end

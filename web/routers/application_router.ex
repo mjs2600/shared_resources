@@ -7,6 +7,12 @@ defmodule ApplicationRouter do
     # any of them or move them to a forwarded router
     conn = conn.fetch([:cookies, :params, :session])
     conn = conn.assign(:current_user, current_user(conn))
+    
+    conn = conn.assign(:notices, get_session(conn, :notices))
+    conn = conn.assign(:errors, get_session(conn, :errors))
+    conn = delete_session(conn, :notices)
+    conn = delete_session(conn, :errors)
+    
     conn.assign :layout, "application_layout"
   end
   
@@ -19,7 +25,7 @@ defmodule ApplicationRouter do
 
   def authenticate_user(conn) do
     unless current_user(conn) do
-      conn = conn.assign(:errors, "You must be logged in to do that!")
+      conn = put_session(conn, :errors, "You must be logged in to do that!")
       redirect conn, to: "/resources"
     end
   end
