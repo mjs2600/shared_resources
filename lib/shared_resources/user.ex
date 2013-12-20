@@ -30,18 +30,24 @@ defmodule SharedResources.User do
     SharedResources.Database.User.read!(id)
   end
 
-  def find_by_name(name) do
+  def find_by_name(search_name) do
     query = Exquisite.match SharedResources.Database.User,
-            where: name == name
+            where: name == search_name
     find_with_query(query)
   end
 
   defp find_with_query(query) do
     Amnesia.transaction do
       result = SharedResources.Database.User.select query
-      {_, [user | _], _} = result
-
-      user
+      parse_query_result(result)
     end
+  end
+  
+  defp parse_query_result({_, [user | _], _}) do
+    user
+  end
+  
+  defp parse_query_result(_) do
+    nil
   end
 end
