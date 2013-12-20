@@ -9,6 +9,22 @@ h2 {
   margin-bottom: 20px;
 }
 
+.notice_section {
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 10px;
+}
+
+#errors {
+  color: red;
+  background-color: pink;
+}
+
+#notices {
+  color: green;
+  background-color: lightgreen;
+}
+
 .resource-list {
   list-style: none;
   margin-left: 0px;

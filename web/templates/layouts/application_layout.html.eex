@@ -26,13 +26,15 @@
     </header>
 
     <section class="container">
+      <section id="errors" class="notice_section"><%= @errors %></section>
+      <section id="notices" class="notice_section"><%= @notices %></section>
+      
       <%= content_for(:template) %>
     </section>
 
     <script src="/static/js/bower_components/jquery/jquery.min.js"></script>
     <script src="/static/js/bower_components/bacon/dist/Bacon.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/check_out.js"></script>
     <script src="/static/js/compiled/application.js"></script>
   </body>
 </html>

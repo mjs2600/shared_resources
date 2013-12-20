@@ -83,4 +83,8 @@
     return SharedResources.Checkout.createStreams();
   });
 
+  $(function() {
+    return $('.notice_section').delay(4000).slideUp(1000);
+  });
+
 }).call(this);
