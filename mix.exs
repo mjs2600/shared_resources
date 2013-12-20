@@ -3,7 +3,7 @@ defmodule SharedResources.Mixfile do
 
   def project do
     [ app: :shared_resources,
-      version: "0.0.1",
+      version: "0.1.0",
       dynamos: [SharedResources.Dynamo],
       compilers: [:elixir, :dynamo, :app],
       env: [prod: [compile_path: "ebin"]],
