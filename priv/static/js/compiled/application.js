@@ -84,6 +84,12 @@
   });
 
   $(function() {
+    if ($('#errors').text() === "") {
+      $('#errors').hide();
+    }
+    if ($('#notices').text() === "") {
+      $('#notices').hide();
+    }
     return $('.notice_section').delay(4000).slideUp(1000);
   });
 
