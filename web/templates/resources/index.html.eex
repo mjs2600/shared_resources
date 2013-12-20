@@ -12,15 +12,11 @@
         <%= status_message(resource.checked_out?, resource) %>
       </span>
 
-      <select class="user-name <%= status_class(resource.checked_out?) %>" name="name">
-        <%= Enum.map @users, fn(user) -> %>
-          <option value="<%= user.id %>"><%= user.name %></option>
-        <% end %>
-      </select>
-
-      <a class="btn btn-primary checkout <%= action_element_class(resource.checked_out?) %>">
-        <%= action_text(resource.checked_out?) %>
-      </a>
+      <%= if @current_user do %>
+        <a class="btn btn-primary checkout <%= action_element_class(resource.checked_out?) %>">
+          <%= action_text(resource.checked_out?) %>
+        </a>
+      <% end %>
     </li>
   <% end %>
 </ul>

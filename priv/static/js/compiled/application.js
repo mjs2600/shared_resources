@@ -18,14 +18,11 @@
         return targetStream.onValue(checkoutItem);
       };
       checkoutItem = function(target) {
-        var checkedOut, path, resource, responseStream, userId;
+        var checkedOut, path, resource, responseStream;
         resource = $(target).closest('.resource');
-        userId = resource.find('.user-name').val();
         checkedOut = resource.data('checked-out');
         path = "/resources/" + (resource.data('id')) + "/" + (action(checkedOut));
-        responseStream = Bacon.fromPromise($.post(path, {
-          user_id: userId
-        }));
+        responseStream = Bacon.fromPromise($.post(path));
         return changeInterface(responseStream, target);
       };
       changeInterface = function(stream, target) {

@@ -3,7 +3,7 @@ defmodule ResourceRouter do
 
   import SharedResources.Resource
   import SharedResources.CheckOutHelper
-  import ApplicationRouter, only: [authenticate_user: 1]
+  import ApplicationRouter, only: [authenticate_user: 1, current_user: 1]
   require Exquisite
 
   get "/" do
@@ -51,8 +51,7 @@ defmodule ResourceRouter do
 
   @prepare :authenticate_user
   post "/:id/check-out" do
-    user_id = conn.params[:user_id]
-    check_out(id, user_id)
+    check_out(id, current_user(conn).id)
     resource = find_by_id(id)
     conn.resp 200, Jsonex.encode [
       check_out: id,

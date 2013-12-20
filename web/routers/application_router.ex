@@ -16,7 +16,7 @@ defmodule ApplicationRouter do
     conn.assign :layout, "application_layout"
   end
   
-  defp current_user(conn) do
+  def current_user(conn) do
     user_id = get_session(conn, :user_id)
     if user_id do
       SharedResources.User.find_by_id(user_id)

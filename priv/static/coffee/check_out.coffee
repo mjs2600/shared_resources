@@ -13,10 +13,9 @@ $ ->
 
     checkoutItem = (target) ->
       resource = $(target).closest('.resource')
-      userId = resource.find('.user-name').val()
       checkedOut = resource.data('checked-out')
       path = "/resources/#{resource.data('id')}/#{action(checkedOut)}"
-      responseStream = Bacon.fromPromise($.post(path, {user_id: userId}))
+      responseStream = Bacon.fromPromise($.post(path))
       changeInterface(responseStream, target)
 
     changeInterface = (stream, target) ->
