@@ -35,6 +35,23 @@ defmodule SharedResources.User do
             where: name == search_name
     find_with_query(query)
   end
+  
+  def authenticate(email_address_query, password) do
+    query = Exquisite.match SharedResources.Database.User,
+            where: email_address == email_address_query
+    user = find_with_query(query)
+    authenticate_user(user, password)
+  end
+
+  defp authenticate_user(nil, _) do
+    false
+  end
+
+  defp authenticate_user(user, password) do
+    if SharedResources.User.Password.encrypt(password, user.salt) == user.encrypted_password do
+      user
+    end
+  end
 
   defp find_with_query(query) do
     Amnesia.transaction do

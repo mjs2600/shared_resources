@@ -16,11 +16,11 @@ defmodule SharedResources.Dynamo do
     static_route: "/static"
 
   # Uncomment the lines below to enable the cookie session store
-  # config :dynamo,
-  #   session_store: Session.CookieStore,
-  #   session_options:
-  #     [ key: "_shared_resources_session",
-  #       secret: "U7dJJOtQCyY1QTmxVJmrhFKamMf018XzeYpa2yT34x8K4Xdq2PgH0/FqrIQrOrQ/"]
+  config :dynamo,
+    session_store: Session.CookieStore,
+    session_options:
+      [ key: "_shared_resources_session",
+        secret: "z7dJJOtQCyY1QTmxVJmrhFKamMf018XzeYpa2yT34x8K4Xdq2PgH0/FqrIQrOrQ/"]
 
   # Default functionality available in templates
   templates do

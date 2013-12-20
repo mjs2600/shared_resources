@@ -1,7 +1,6 @@
 defmodule SharedResources.User.Password do
   def encrypt(password, salt) do
     {:ok, hash} = :bcrypt.hashpw(password, salt)
-
     hash
   end
 
