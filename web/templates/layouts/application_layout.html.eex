@@ -14,9 +14,9 @@
         <ul class="nav">
           <li class="brand"><a href="/">Shared Resources</a></li>
         </ul>
-        <a href="/resources/new" class="btn pull-right">Add New Resource</a>
-        <a href="/users/new" class="btn pull-right">Add New User</a>
         <%= if @current_user do %>
+          <a href="/resources/new" class="btn pull-right">Add New Resource</a>
+          <a href="/users/new" class="btn pull-right">Add New User</a>
           <span class="pull-right"><%= @current_user.name %></span>
           <a href="/users/logout" class="btn pull-right">Log Out</a>
         <% else %>

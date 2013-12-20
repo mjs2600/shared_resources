@@ -17,6 +17,13 @@ defmodule ApplicationRouter do
     end
   end
 
+  def authenticate_user(conn) do
+    unless current_user(conn) do
+      conn = conn.assign(:errors, "You must be logged in to do that!")
+      redirect conn, to: "/resources"
+    end
+  end
+
   # It is common to break your Dynamo in many
   # routers forwarding the requests between them
   forward "/users", to: UserRouter

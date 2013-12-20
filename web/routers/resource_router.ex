@@ -3,6 +3,7 @@ defmodule ResourceRouter do
 
   import SharedResources.Resource
   import SharedResources.CheckOutHelper
+  import ApplicationRouter, only: [authenticate_user: 1]
   require Exquisite
 
   get "/" do
@@ -11,25 +12,30 @@ defmodule ResourceRouter do
     render conn, "resources/index"
   end
 
+  @prepare :authenticate_user
   post "/" do
     create(conn.params)
     redirect conn, to: "/"
   end
   
+  @prepare :authenticate_user
   get "/:id/edit" do
     conn = conn.assign(:resource, find_by_id(id))
     render conn, "resources/edit"
   end
   
+  @prepare :authenticate_user
   post "/:id" do
     update(conn.params)
     redirect conn, to: "/resources"
   end
 
+  @prepare :authenticate_user
   get "/new" do
     render conn, "resources/new"
   end
 
+  @prepare :authenticate_user
   post "/:id/check-in" do
     check_in(id)
     resource = find_by_id(id)
@@ -43,6 +49,7 @@ defmodule ResourceRouter do
     ]
   end
 
+  @prepare :authenticate_user
   post "/:id/check-out" do
     user_id = conn.params[:user_id]
     check_out(id, user_id)

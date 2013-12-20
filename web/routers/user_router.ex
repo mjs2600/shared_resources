@@ -2,6 +2,7 @@ defmodule UserRouter do
   use Dynamo.Router
 
   import SharedResources.User
+  import ApplicationRouter, only: [authenticate_user: 1]
   require Exquisite
 
   get "/" do
@@ -9,11 +10,13 @@ defmodule UserRouter do
     render conn, "users/index"
   end
 
+  @prepare :authenticate_user
   post "/" do
     create(conn.params)
     redirect conn, to: "/users"
   end
 
+  @prepare :authenticate_user
   get "/new" do
     render conn, "users/new.html"
   end
