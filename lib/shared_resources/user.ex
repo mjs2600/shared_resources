@@ -15,6 +15,17 @@ defmodule SharedResources.User do
       user.write
     end
   end
+  
+  def update(params) do
+    user = find_by_id(params[:id])
+    name          = params[:name] || user.name
+    email_address = params[:email_address] || user.email_address
+    
+    Amnesia.transaction do
+      user.name(name).email_address(email_address).write
+      update_password(user, params[:password])
+    end
+  end
 
   def index do
     query = Exquisite.match SharedResources.Database.User
@@ -43,7 +54,7 @@ defmodule SharedResources.User do
     authenticate_user(user, password)
   end
 
-  defp authenticate_user(nil, _) do
+  defp authenticate_user(nil, _password) do
     false
   end
 
@@ -51,6 +62,14 @@ defmodule SharedResources.User do
     if SharedResources.User.Password.encrypt(password, user.salt) == user.encrypted_password do
       user
     end
+  end
+  
+  defp update_password(_user, "") do
+  end
+  
+  defp update_password(user, password) do
+    encrypted_password = SharedResources.User.Password.encrypt(password, user.salt)
+    user.encrypted_password(encrypted_password).write
   end
 
   defp find_with_query(query) do

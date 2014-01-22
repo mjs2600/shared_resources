@@ -21,6 +21,13 @@ defmodule UserRouter do
     render conn, "users/new.html"
   end
   
+  @prepare :authenticate_user
+  # TODO: Only allow people to edit themselves, unless they're an admin
+  get "/:id/edit" do
+    conn = conn.assign(:user, find_by_id(id))
+    render conn, "users/edit"
+  end
+  
   get "/login" do
     render conn, "users/login"
   end
@@ -41,5 +48,12 @@ defmodule UserRouter do
     conn = delete_session(conn, :user_id)
     conn = put_session(conn, :notices, "Thanks for visiting \"Shared Resources\"&copy;, your center for resources that need sharing!")
     redirect conn, to: "/resources"
+  end
+  
+  @prepare :authenticate_user
+  # TODO: Only allow people to edit themselves, unless they're an admin
+  post "/:id" do
+    update(conn.params)
+    redirect conn, to: "/users"
   end
 end
