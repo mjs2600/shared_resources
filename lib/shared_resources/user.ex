@@ -20,8 +20,13 @@ defmodule SharedResources.User do
 
   def update(params) do
     user = Repo.get(SharedResources.User, params[:id])
-    user = user.name(params[:name]) when params[:name]
-    user = user.email_address(params[:email_address]) when params[:email_address]
+    if params[:name] do
+      user = user.name(params[:name]) 
+    end
+
+    if params[:email_address] do
+      user = user.email_address(params[:email_address])
+    end
 
     user = update_password(user, params[:password])
 
