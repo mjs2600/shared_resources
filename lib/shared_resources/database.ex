@@ -38,7 +38,23 @@ defdatabase SharedResources.Database do
 
   deftable Resource, [:id, :name, :location, :user_id], type: :ordered_set do
     def checked_out?(self) do
-      !!self.checked_out_by!
+      !self.checked_in?
+    end
+    
+    def checked_in?(self) do
+      !self.checked_out_by!
+    end
+    
+    def checkable?(nil, _self) do
+      false
+    end
+    
+    def checkable?(user, self) do
+      self.checked_in? || self.checked_out_by?(user.id)
+    end
+    
+    def checked_out_by?(user_id, self) do
+      self.user_id == user_id
     end
 
     def checked_out_by(self) do

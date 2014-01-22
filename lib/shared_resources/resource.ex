@@ -38,9 +38,11 @@ defmodule SharedResources.Resource do
     SharedResources.Database.Resource.read!(id)
   end
 
-  def check_in(id) do
+  def check_in(id, current_user_id) do
     resource = find_by_id(id)
-    resource.check_in()
+    if resource.checked_out_by?(current_user_id) do
+      resource.check_in()
+    end
   end
 
   def check_out(id, user_id) do

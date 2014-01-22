@@ -37,14 +37,14 @@ defmodule ResourceRouter do
 
   @prepare :authenticate_user
   post "/:id/check-in" do
-    check_in(id)
+    check_in(id, current_user(conn).id)
     resource = find_by_id(id)
     conn.resp 200, Jsonex.encode [
       check_in: id,
-      action_text: action_text(false),
+      action_text: action_text(resource.checked_out?),
       action_element_class: action_element_class(true),
-      checked_out: false,
-      status_message: status_message(false, resource),
+      checked_out: resource.checked_out?,
+      status_message: status_message(resource.checked_out?, resource),
       action_classes: action_classes
     ]
   end
@@ -55,10 +55,10 @@ defmodule ResourceRouter do
     resource = find_by_id(id)
     conn.resp 200, Jsonex.encode [
       check_out: id,
-      action_text: action_text(true),
+      action_text: action_text(resource.checked_out?),
       action_element_class: action_element_class(true),
-      checked_out: true,
-      status_message: status_message(true, resource),
+      checked_out: resource.checked_out?,
+      status_message: status_message(resource.checked_out?, resource),
       action_classes: action_classes
     ]
   end
