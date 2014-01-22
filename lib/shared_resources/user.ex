@@ -1,5 +1,6 @@
 defmodule SharedResources.User do
   use Ecto.Model
+  import Ecto.Query
 
   queryable "users" do
     has_many :resources, Resource
@@ -43,7 +44,7 @@ defmodule SharedResources.User do
 
   def find_by_name(name) do
     query = from u in SharedResources.User,
-      where: u.name == ^name,
+      where: u.name == ^(name),
       select: u
 
     Repo.get(query)
@@ -51,8 +52,8 @@ defmodule SharedResources.User do
 
   # TODO: Call on User instead
   def authenticate(email_address, password) do
-    query = from u SharedResources.User,
-            where: u.email_address == ^email_address,
+    query = from u in SharedResources.User,
+            where: u.email_address == ^(email_address),
             select: u
 
     user = Repo.get(query)
