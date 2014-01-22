@@ -35,7 +35,7 @@ defmodule SharedResources.User do
   end
 
   def index do
-    Repo.all(SharedResource.User)
+    Repo.all(SharedResources.User)
   end
 
   def find_by_id(id) do
