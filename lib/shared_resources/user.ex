@@ -1,5 +1,5 @@
 defmodule SharedResources.User do
-  use Amnesia
+  use SharedResources.Database
   require Exquisite
 
   def create(params) do
@@ -31,8 +31,7 @@ defmodule SharedResources.User do
   end
 
   def find_by_name(search_name) do
-    query = Exquisite.match SharedResources.Database.User,
-            where: name == search_name
+    query = SharedResources.Database.User.where(user.name == search_name, qualified: true)
     find_with_query(query)
   end
   
