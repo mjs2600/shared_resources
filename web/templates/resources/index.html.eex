@@ -17,6 +17,9 @@
           <%= action_text(resource.checked_out?) %>
         </a>
       <% end %>
+        <a class="btn delete">
+          Delete
+        </a>
     </li>
   <% end %>
 </ul>

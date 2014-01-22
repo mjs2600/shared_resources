@@ -62,6 +62,11 @@ defmodule SharedResources.Resource do
     
     Repo.update(resource)
   end
+  
+  def delete(params) do
+    resource = Repo.get(SharedResources.Resource, params[:id])
+    Repo.delete(resource)
+  end
 
   def check_in(id, current_user_id) do
     resource = Repo.get(SharedResources.Resource, id)

@@ -29,6 +29,13 @@ defmodule ApplicationRouter do
       redirect conn, to: "/resources"
     end
   end
+  
+  def authorize_admin(conn) do
+    unless current_user(conn) && current_user(conn).admin do
+      conn = put_session(conn, :errors, "Hey, only admins can do that!  You've been reported to the authorities.")
+      redirect conn, to: "/resources"
+    end
+  end
 
   # It is common to break your Dynamo in many
   # routers forwarding the requests between them

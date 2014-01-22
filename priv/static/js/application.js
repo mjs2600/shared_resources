@@ -81,6 +81,33 @@
   });
 
   $(function() {
+    window.SharedResources || (window.SharedResources = {});
+    SharedResources["delete"] = function() {
+      var createStreams, deleteItem;
+      createStreams = function() {
+        var deleteElem, deleteStream;
+        deleteElem = $('.resource').find('.delete');
+        deleteStream = deleteElem.asEventStream('click');
+        return deleteStream.map(function(e) {
+          return this.deleteItem(e.target);
+        });
+      };
+      deleteItem = function(target) {
+        var path, resource, responseStream;
+        resource = $(target).closest('.resource');
+        path = "/resources/" + (resource.data('id')) + "/delete";
+        responseStream = Bacon.fromPromise($.post(path));
+        return resource.fadeOut(3000);
+      };
+      return {
+        createStreams: createStreams
+      };
+    };
+    SharedResources.Delete = SharedResources["delete"]();
+    return SharedResources.Delete.createStreams();
+  });
+
+  $(function() {
     if ($('#errors').text() === "") {
       $('#errors').hide();
     }

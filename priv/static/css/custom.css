@@ -67,6 +67,13 @@ h2 {
   width: 75px;
 }
 
+.resource .delete {
+  position: absolute;
+  right: 20px;
+  top: 60px;
+  width: 75px;
+}
+
 .resource .location {
   display: inline-block;
   margin-top: 20px;

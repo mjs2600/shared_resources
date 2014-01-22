@@ -3,7 +3,7 @@ defmodule ResourceRouter do
 
   import SharedResources.Resource
   import SharedResources.CheckOutHelper
-  import ApplicationRouter, only: [authenticate_user: 1, current_user: 1]
+  import ApplicationRouter, only: [authenticate_user: 1, current_user: 1, authorize_admin: 1]
   require Exquisite
 
   get "/" do
@@ -33,6 +33,12 @@ defmodule ResourceRouter do
   @prepare :authenticate_user
   get "/new" do
     render conn, "resources/new"
+  end
+  
+  @prepare :authorize_admin
+  post "/:id/delete" do
+    delete(conn.params)
+    conn.resp 200, "ok"
   end
 
   @prepare :authenticate_user
