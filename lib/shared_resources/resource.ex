@@ -38,13 +38,15 @@ defmodule SharedResources.Resource do
   def check_in(id, current_user_id) do
     resource = Repo.get(SharedResources.Resource, id)
     if resource.checked_out_by?(current_user_id) do
-      resource.check_in()
+      resource = resource.user_id(nil)
+      Repo.update(resource)
     end
   end
 
   def check_out(id, user_id) do
     resource = Repo.get(SharedResources.Resource, id)
-    resource.check_out(user_id)
+    resource = resource.user_id(user_id)
+    Repo.update(resource)
   end
 
   def checked_out?(resource) do
@@ -73,16 +75,6 @@ defmodule SharedResources.Resource do
 
   def checked_out_by!(resource) do
     resource.checked_out_by
-  end
-
-  def check_in(resource) do
-    resource = resource.user_id(nil)
-    Repo.update(resource)
-  end
-
-  def check_out(user_id, resource) do
-    resource = resource.user_id(user_id)
-    Repo.update(resource)
   end
   
 end
