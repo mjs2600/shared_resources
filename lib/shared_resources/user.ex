@@ -2,7 +2,7 @@ defmodule SharedResources.User do
   use Ecto.Model
 
   queryable "users" do
-    has_many :resources, Resources
+    has_many :resources, Resource
     field :name
     field :email_address
     field :salt
@@ -19,39 +19,38 @@ defmodule SharedResources.User do
   end
 
   def update(params) do
-    user = find_by_id(params[:id])
-    name          = params[:name] || user.name
-    email_address = params[:email_address] || user.email_address
-    
-    Amnesia.transaction do
-      user.name(name).email_address(email_address).write
-      update_password(user, params[:password])
-    end
+    user = Repo.get(SharedResources.User, params[:id])
+    user = user.name(params[:name]) when params[:name]
+    user = user.email_address(params[:email_address]) when params[:email_address]
+
+    user = update_password(user, params[:password])
+
+    Repo.update(user)
   end
 
   def index do
-    query = Exquisite.match SharedResources.Database.User
-
-    response = Amnesia.transaction do
-      SharedResources.Database.User.select query
-    end
-
-    SharedResources.Database.extract_response response
+    Repo.all(SharedResource.User)
   end
 
   def find_by_id(id) do
-    SharedResources.Database.User.read!(id)
+    Repo.get(SharedResources.User, params[:id])
   end
 
-  def find_by_name(search_name) do
-    query = SharedResources.Database.User.where(user.name == search_name, qualified: true)
-    find_with_query(query)
+  def find_by_name(name) do
+    query = from u in SharedResources.User,
+      where: u.name == ^name,
+      select: u
+
+    Repo.get(query)
   end
-  
-  def authenticate(email_address_query, password) do
-    query = Exquisite.match SharedResources.Database.User,
-            where: email_address == email_address_query
-    user = find_with_query(query)
+
+  # TODO: Call on User instead
+  def authenticate(email_address, password) do
+    query = from u SharedResources.User,
+            where: u.email_address == ^email_address,
+            select: u
+
+    user = Repo.get(query)
     authenticate_user(user, password)
   end
 
@@ -64,27 +63,24 @@ defmodule SharedResources.User do
       user
     end
   end
-  
-  defp update_password(_user, "") do
-  end
-  
-  defp update_password(user, password) do
-    encrypted_password = SharedResources.User.Password.encrypt(password, user.salt)
-    user.encrypted_password(encrypted_password).write
-  end
 
-  defp find_with_query(query) do
-    Amnesia.transaction do
-      result = SharedResources.Database.User.select query
-      parse_query_result(result)
-    end
-  end
-  
-  defp parse_query_result({_, [user | _], _}) do
+  defp update_password(user, "") do
     user
   end
-  
-  defp parse_query_result(_) do
-    nil
+
+  defp update_password(user, password) do
+    encrypted_password = SharedResources.User.Password.encrypt(password, user.salt)
+
+    user.encrypted_password(encrypted_password)
   end
+
+  def check_password(user, password) do
+    user.encrypted_password == SharedResources.User.Password.encrypt(password)
+  end
+
+  def set_password(user, password) do
+    user.encrypted_password(SharedResources.User.Password.encrypt(password))
+    Repo.update(user)
+  end
+
 end
