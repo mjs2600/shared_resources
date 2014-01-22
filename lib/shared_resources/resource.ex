@@ -1,6 +1,5 @@
 defmodule SharedResources.Resource do
   use Ecto.Model
-  import Ecto.Query
 
   queryable "resources" do
     belongs_to :user, User # TODO: Try this without specifying the class name
@@ -26,21 +25,25 @@ defmodule SharedResources.Resource do
 
   def update(params) do
     resource = Repo.get(SharedResources.Resource, params[:id])
-    resource = resource.name(params[:name]) when params[:name]
-    resource = resource.location(params[:location]) when params[:location]
+    if params[:name] do
+      resource = resource.name(params[:name])
+    end
+    if params[:location] do
+      resource = resource.location(params[:location])
+    end
     
     Repo.update(resource)
   end
 
   def check_in(id, current_user_id) do
-    resource = Repo.get(SharedResources.Resource, params[:id])
+    resource = Repo.get(SharedResources.Resource, id)
     if resource.checked_out_by?(current_user_id) do
       resource.check_in()
     end
   end
 
   def check_out(id, user_id) do
-    resource = Repo.get(SharedResources.Resource, params[:id])
+    resource = Repo.get(SharedResources.Resource, id)
     resource.check_out(user_id)
   end
 
