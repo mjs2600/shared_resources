@@ -4,9 +4,13 @@
   "cowboy": {:git, "git://github.com/extend/cowboy.git", "0ec713fc4b185c3cd0f6b2e7ec2c5f198361bddd", []},
   "cowlib": {:git, "git://github.com/extend/cowlib.git", "63298e8e160031a70efff86a1acde7e7db1fcda6", [ref: "0.4.0"]},
   "datastructures": {:git, "git://github.com/meh/elixir-datastructures.git", "2ce43b62424b28fa42373e27e38ae8ea0a700aff", []},
+  "decimal": {:git, "git://github.com/ericmj/decimal.git", "eef08ae02496d7c9d6bed2b06342d7be0e791223", []},
   "dynamo": {:git, "git://github.com/dynamo/dynamo.git", "a25f6701993ea7a88f2ccd3b8c40c3216305442b", []},
+  "ecto": {:git, "git://github.com/elixir-lang/ecto.git", "d16a47ff4f6a4fc5161e1d7fb20524c633b14d73", []},
   "exquisite": {:git, "git://github.com/meh/exquisite.git", "16e4258d529cf2820dd346e38642100bb70d7e3c", []},
   "jsonex": {:git, "git://github.com/marcelog/jsonex.git", "feb4a5b8fbb62e3910923a4325795576fa014c34", []},
   "jsx": {:git, "git://github.com/talentdeficit/jsx.git", "cb14b92a228e51f7bdcaa7eb17f035e4a5c0b47d", [tag: "v1.3.3"]},
   "mimetypes": {:git, "git://github.com/spawngrid/mimetypes.git", "47d37a977a7d633199822bf6b08353007483d00f", []},
+  "poolboy": {:git, "git://github.com/devinus/poolboy.git", "d47df5df57b22eb183b0c48c8dcc5f9827fad71b", []},
+  "postgrex": {:git, "git://github.com/ericmj/postgrex.git", "06e7e567e13bb3c96f6842d370556443eaf41b13", []},
   "ranch": {:git, "git://github.com/extend/ranch.git", "5df1f222f94e08abdcab7084f5e13027143cc222", [ref: "0.9.0"]} ]

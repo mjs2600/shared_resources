@@ -20,6 +20,8 @@ defmodule SharedResources.Mixfile do
   defp deps do
     [ { :cowboy, github: "extend/cowboy" },
       { :dynamo, github: "dynamo/dynamo" },
+      { :postgrex, github: "ericmj/postgrex" },
+      { :ecto, github: "elixir-lang/ecto" },
       { :amnesia, github: "meh/amnesia" },
       { :jsonex, github: "marcelog/jsonex" },
       { :bcrypt, github: "smarkets/erlang-bcrypt" }]
