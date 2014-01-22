@@ -45,18 +45,20 @@ defmodule SharedResources.User do
   def find_by_name(name) do
     query = from u in SharedResources.User,
       where: u.name == ^(name),
+      limit: 1,
       select: u
 
-    Repo.get(query)
+    Repo.all(query) |> List.first
   end
 
   # TODO: Call on User instead
   def authenticate(email_address, password) do
     query = from u in SharedResources.User,
             where: u.email_address == ^(email_address),
+            limit: 1,
             select: u
 
-    user = Repo.get(query)
+    user = Repo.all(query) |> List.first
     authenticate_user(user, password)
   end
 
