@@ -7,3 +7,4 @@ Mnesia*
 *.swp
 _build/
 tags
+*.beam
