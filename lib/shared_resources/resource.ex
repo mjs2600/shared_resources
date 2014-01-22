@@ -1,52 +1,85 @@
 defmodule SharedResources.Resource do
-  use Amnesia
-  require Exquisite
+  use Ecto.Model
+  import Ecto.Query
+
+  queryable "resources" do
+    belongs_to :user, User # TODO: Try this without specifying the class name
+    field :name
+    field :location
+  end
 
   def index do
-    query = Exquisite.match SharedResources.Database.Resource
-
-    response = Amnesia.transaction do
-      SharedResources.Database.Resource.select query
-    end
-
-    SharedResources.Database.extract_response response
+    Repo.all(SharedResources.Resource)
+  end
+  
+  def find_by_id(id) do
+    Repo.get(SharedResources.Resource, id)
   end
 
   def create(params) do
-    name = params[:name]
-    location = params[:location]
-
-    Amnesia.transaction do
-      resource = SharedResources.Database.Resource[name: name,
-                                                   location: location,
-                                                   id: SharedResources.Database.generate_id]
-      resource.write
-    end
+    resource = SharedResources.Resource.new(
+      name: params[:name],
+      location: params[:location]
+    )
+    Repo.create(resource)
   end
-  
+
   def update(params) do
-    resource = find_by_id(params[:id])
-    location = params[:location] || resource.location
-    name = params[:name] || resource.name
-
-    Amnesia.transaction do
-      resource.location(location).name(name).write
-    end
-  end
-
-  def find_by_id(id) do
-    SharedResources.Database.Resource.read!(id)
+    resource = Repo.get(SharedResources.Resource, params[:id])
+    resource = resource.name(params[:name]) when params[:name]
+    resource = resource.location(params[:location]) when params[:location]
+    
+    Repo.update(resource)
   end
 
   def check_in(id, current_user_id) do
-    resource = find_by_id(id)
+    resource = Repo.get(SharedResources.Resource, params[:id])
     if resource.checked_out_by?(current_user_id) do
       resource.check_in()
     end
   end
 
   def check_out(id, user_id) do
-    resource = find_by_id(id)
+    resource = Repo.get(SharedResources.Resource, params[:id])
     resource.check_out(user_id)
   end
+
+  def checked_out?(resource) do
+    !resource.checked_in?
+  end
+  
+  def checked_in?(resource) do
+    !resource.checked_out_by!
+  end
+  
+  def checkable?(nil, _resource) do
+    false
+  end
+  
+  def checkable?(user, resource) do
+    resource.checked_in? || resource.checked_out_by?(user.id)
+  end
+  
+  def checked_out_by?(user_id, resource) do
+    resource.user_id == user_id
+  end
+
+  def checked_out_by(resource) do
+    Repo.get(SharedResources.User, resource.user_id)
+  end
+
+  def checked_out_by!(resource) do
+    resource.checked_out_by
+  end
+
+  def check_in(resource) do
+    resource = resource.user_id(nil)
+    Repo.update(resource)
+  end
+
+  def check_out(user_id, resource) do
+    resource = resource.user_id(user_id)
+    Repo.update(resource)
+  end
+  
 end
