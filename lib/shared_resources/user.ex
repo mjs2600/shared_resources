@@ -38,7 +38,7 @@ defmodule SharedResources.User do
   end
 
   def find_by_id(id) do
-    Repo.get(SharedResources.User, params[:id])
+    Repo.get(SharedResources.User, id)
   end
 
   def find_by_name(name) do
