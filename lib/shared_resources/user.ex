@@ -15,8 +15,9 @@ defmodule SharedResources.User do
     name = params[:name]
     email_address = params[:email_address]
     {encrypted_password, salt} = SharedResources.User.Password.create(params[:password])
+    admin = params[:admin] |> FormToolbox.string_to_boolean
 
-    user = SharedResources.User.new(name: name, email_address: email_address, salt: salt, encrypted_password: encrypted_password)
+    user = SharedResources.User.new(name: name, email_address: email_address, salt: salt, encrypted_password: encrypted_password, admin: admin)
     Repo.create(user)
   end
 
