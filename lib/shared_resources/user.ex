@@ -1,21 +1,23 @@
 defmodule SharedResources.User do
-  use SharedResources.Database
-  require Exquisite
+  use Ecto.Model
+
+  queryable "users" do
+    has_many :resources, Resources
+    field :name
+    field :email_address
+    field :salt
+    field :encrypted_password
+  end
 
   def create(params) do
     name = params[:name]
     email_address = params[:email_address]
     {encrypted_password, salt} = SharedResources.User.Password.create(params[:password])
-    Amnesia.transaction do
-      user = SharedResources.Database.User[name: name,
-                                           email_address: email_address,
-                                           id: SharedResources.Database.generate_id,
-                                           salt: salt,
-                                           encrypted_password: encrypted_password]
-      user.write
-    end
+
+    user = SharedResources.User.new(name: name, email_address: email_address, salt: salt, encrypted_password: encrypted_password)
+    Repo.create(user)
   end
-  
+
   def update(params) do
     user = find_by_id(params[:id])
     name          = params[:name] || user.name
