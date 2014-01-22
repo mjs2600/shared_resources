@@ -12,7 +12,7 @@
         <%= status_message(resource.checked_out?, resource) %>
       </span>
 
-      <%= if @current_user do %>
+      <%= if resource.checkable?(@current_user) do %>
         <a class="btn btn-primary checkout <%= action_element_class(resource.checked_out?) %>">
           <%= action_text(resource.checked_out?) %>
         </a>
