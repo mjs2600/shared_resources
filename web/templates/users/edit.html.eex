@@ -8,6 +8,12 @@
     <input type="text" name="email_address" placeholder="Email Address" class="controls" value="<%= @user.email_address %>">
   </section>
   
+  <%= if @current_user.admin do %>
+    <section class="control-group">
+      <label><input type="checkbox" name="admin" class="controls" value="true" <%= if @user.admin, do: 'checked' %>> Admin?</label>
+    </section>
+  <% end %>
+  
   <section class="control-group">
     <input type="password" name="password" placeholder="Password" class="controls">
   </section>

@@ -8,6 +8,7 @@ defmodule SharedResources.User do
     field :email_address
     field :salt
     field :encrypted_password
+    field :admin, :boolean
   end
 
   def create(params) do
@@ -21,14 +22,13 @@ defmodule SharedResources.User do
 
   def update(params) do
     user = Repo.get(SharedResources.User, params[:id])
-    if params[:name] do
-      user = user.name(params[:name]) 
-    end
-
-    if params[:email_address] do
-      user = user.email_address(params[:email_address])
-    end
-
+    
+    if params[:name], do: user = user.name(params[:name])
+    if params[:email_address], do: user = user.email_address(params[:email_address])
+    user = params[:admin]
+      |> FormToolbox.string_to_boolean
+      |> user.admin
+    
     user = update_password(user, params[:password])
 
     Repo.update(user)

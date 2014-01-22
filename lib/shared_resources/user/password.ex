@@ -7,7 +7,7 @@ defmodule SharedResources.User.Password do
   end
 
   def gen_salt do
-    {:ok, salt} = :bcrypt.gen_salt
+    {:ok, salt} = :bcrypt.gen_salt(10)
     string_salt = salt |> String.from_char_list!
 
     string_salt
