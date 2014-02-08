@@ -23,13 +23,13 @@ defmodule SharedResources.User do
 
   def update(params) do
     user = Repo.get(SharedResources.User, params[:id])
-    
+
     if params[:name], do: user = user.name(params[:name])
     if params[:email_address], do: user = user.email_address(params[:email_address])
     user = params[:admin]
       |> FormToolbox.string_to_boolean
       |> user.admin
-    
+
     user = update_password(user, params[:password])
 
     Repo.update(user)
@@ -71,6 +71,10 @@ defmodule SharedResources.User do
     if SharedResources.User.Password.encrypt(password, user.salt) == user.encrypted_password do
       user
     end
+  end
+
+  defp update_password(user, nil) do
+    user
   end
 
   defp update_password(user, "") do
