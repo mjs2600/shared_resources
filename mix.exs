@@ -24,6 +24,6 @@ defmodule SharedResources.Mixfile do
       { :ecto, github: "elixir-lang/ecto" },
       { :amnesia, github: "meh/amnesia" },
       { :jsonex, github: "marcelog/jsonex" },
-      { :bcrypt, github: "smarkets/erlang-bcrypt" }]
+      { :bcrypt, github: "opscode/erlang-bcrypt" }]
   end
 end
