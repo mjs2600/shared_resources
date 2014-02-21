@@ -15,10 +15,11 @@
           <li class="brand"><a href="/">Shared Resources</a></li>
         </ul>
         <%= if @current_user do %>
+          <a href="/users/logout" class="btn pull-right btn-danger">Log Out</a>
           <a href="/resources/new" class="btn pull-right">Add New Resource</a>
           <a href="/users/new" class="btn pull-right">Add New User</a>
           <a href="/users/<%= @current_user.id %>/edit" class="btn pull-right"><%= @current_user.name %></a>
-          <a href="/users/logout" class="btn pull-right">Log Out</a>
+
         <% else %>
           <a href="/users/login" class="btn pull-right">Log In</a>
         <% end %>
@@ -28,7 +29,7 @@
     <section class="container">
       <section id="errors" class="notice_section"><%= @errors %></section>
       <section id="notices" class="notice_section"><%= @notices %></section>
-      
+
       <%= content_for(:template) %>
     </section>
 
