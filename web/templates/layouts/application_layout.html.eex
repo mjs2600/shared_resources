@@ -24,7 +24,7 @@
           <a href="/users/<%= @current_user.id %>/edit" class="btn pull-right"><%= @current_user.name %></a>
 
         <% else %>
-          <a href="/users/login" class="btn pull-right">Log In</a>
+          <a href="/users/login" class="btn pull-right btn-success">Log In</a>
         <% end %>
       </nav>
     </header>
