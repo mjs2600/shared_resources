@@ -17,13 +17,13 @@ defmodule ResourceRouter do
     create(conn.params)
     redirect conn, to: "/"
   end
-  
+
   @prepare :authenticate_user
   get "/:id/edit" do
     conn = conn.assign(:resource, find_by_id(id))
     render conn, "resources/edit"
   end
-  
+
   @prepare :authenticate_user
   post "/:id" do
     update(conn.params)
@@ -34,7 +34,7 @@ defmodule ResourceRouter do
   get "/new" do
     render conn, "resources/new"
   end
-  
+
   @prepare :authorize_admin
   post "/:id/delete" do
     delete(conn.params)

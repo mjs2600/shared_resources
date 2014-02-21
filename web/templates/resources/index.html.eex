@@ -3,8 +3,7 @@
 <h2>Check You Out a Resource for Great Good</h2>
 <ul class="resource-list">
   <%= Enum.map @resources, fn(resource) -> %>
-  <li class="resource" data-checked-out="<%= resource.checked_out? %>"
-    data-id="<%= resource.id %>">
+  <li class="resource" data-checked-out="<%= resource.checked_out? %>" data-id="<%= resource.id %>">
       <span class="name">
         <a href="/resources/<%= resource.id %>/edit"><%= resource.name %></a>
       </span>

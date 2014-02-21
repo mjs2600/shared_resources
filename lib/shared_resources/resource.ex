@@ -5,31 +5,31 @@ defmodule SharedResources.Resource do
     belongs_to :user, User # TODO: Try this without specifying the class name
     field :name
     field :location
-    
+
     def checked_in?(resource) do
       !resource.checked_out_by!
     end
-    
+
     def checked_out?(resource) do
       !resource.checked_in?
     end
-    
+
     def checked_out_by(resource) do
       Repo.get(SharedResources.User, resource.user_id)
     end
-    
+
     def checked_out_by?(user_id, resource) do
       resource.user_id == user_id
     end
-    
+
     def checked_out_by!(resource) do
       resource.checked_out_by
     end
-    
+
     def checkable?(nil, _resource) do
       false
     end
-  
+
     def checkable?(user, resource) do
       resource.checked_in? || resource.checked_out_by?(user.id) || user.admin
     end
@@ -38,7 +38,7 @@ defmodule SharedResources.Resource do
   def index do
     Repo.all(SharedResources.Resource)
   end
-  
+
   def find_by_id(id) do
     Repo.get(SharedResources.Resource, id)
   end
@@ -59,10 +59,10 @@ defmodule SharedResources.Resource do
     if params[:location] do
       resource = resource.location(params[:location])
     end
-    
+
     Repo.update(resource)
   end
-  
+
   def delete(params) do
     resource = Repo.get(SharedResources.Resource, params[:id])
     Repo.delete(resource)
@@ -81,5 +81,5 @@ defmodule SharedResources.Resource do
     resource = resource.user_id(user_id)
     Repo.update(resource)
   end
-  
+
 end
