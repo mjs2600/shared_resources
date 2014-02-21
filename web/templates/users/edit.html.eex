@@ -22,3 +22,7 @@
     <input type="submit" value="Update User" class="btn controls">
   </section>
 </form>
+
+<a href="/users/">
+  Look at all the users...
+</a>
