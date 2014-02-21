@@ -25,7 +25,7 @@
           <%= action_text(resource.checked_out?) %>
         </a>
       <% end %>
-      <%= if @current_user && @current_user.admin do %>
+      <%= if resource.deletable?(@current_user) do %>
         <a class="btn delete btn-danger">
           Delete
         </a>

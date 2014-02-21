@@ -33,6 +33,14 @@ defmodule SharedResources.Resource do
     def checkable?(user, resource) do
       resource.checked_in? || resource.checked_out_by?(user.id) || user.admin
     end
+
+    def deletable?(nil, _resource) do
+      false
+    end
+
+    def deletable?(current_user, _resource) do
+       current_user.admin
+    end
   end
 
   def index do
