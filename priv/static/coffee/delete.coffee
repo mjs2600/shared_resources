@@ -10,8 +10,9 @@ $ ->
     deleteItem = (target) ->
       resource = $(target).closest('.resource')
       path = "/resources/#{resource.data('id')}/delete"
-      responseStream = Bacon.fromPromise($.post(path))
-      resource.fadeOut(500)
+      if (confirm("Hey, you sure you want to remove that?"))
+        responseStream = Bacon.fromPromise($.post(path))
+        resource.fadeOut(500)
 
     {
       createStreams: createStreams
