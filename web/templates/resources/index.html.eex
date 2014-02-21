@@ -17,9 +17,11 @@
           <%= action_text(resource.checked_out?) %>
         </a>
       <% end %>
+      <%= if @current_user && @current_user.admin do %>
         <a class="btn delete">
           Delete
         </a>
+      <% end %>
     </li>
   <% end %>
 </ul>

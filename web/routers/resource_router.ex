@@ -8,6 +8,7 @@ defmodule ResourceRouter do
   get "/" do
     conn = conn.assign(:resources, index)
     conn = conn.assign(:users, SharedResources.User.index)
+    conn = conn.assign(:current_user, current_user(conn))
     render conn, "resources/index"
   end
 
