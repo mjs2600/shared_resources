@@ -9,6 +9,10 @@ defmodule SharedResources.User do
     field :salt
     field :encrypted_password
     field :admin, :boolean
+
+    def destroy(user) do
+      Repo.delete(user)
+    end
   end
 
   def create(params) do

@@ -7,10 +7,13 @@
   <section class="control-group">
     <input type="text" name="email_address" placeholder="Email Address" class="controls" value="<%= @user.email_address %>">
   </section>
-  
+
   <%= if @current_user.admin do %>
     <section class="control-group">
-      <label><input type="checkbox" name="admin" class="controls" value="true" <%= if @user.admin, do: 'checked' %>> Admin?</label>
+      <label>
+        <input type="checkbox" name="admin" class="controls" value="true" <%= if @user.admin, do: 'checked' %>>
+        Admin?
+      </label>
     </section>
   <% end %>
   
@@ -20,9 +23,10 @@
 
   <section class="control-group">
     <input type="submit" value="Update User" class="btn controls">
+    <%= if @current_user.admin do %>
+      <a href="/users/<%=@user.id%>/delete" class="btn delete btn-danger">
+        Destroy User
+      </a>
+    <% end %>
   </section>
 </form>
-
-<a href="/users/">
-  Look at all the users...
-</a>

@@ -52,6 +52,19 @@ defmodule UserRouter do
 
   @prepare :authenticate_user
   @finalize :authorize_current_user_or_admin
+  get "/:id/delete" do
+    user = find_by_id(id)
+    user_is_current_user = user == current_user(conn)
+    if current_user_or_admin(conn) do
+      user.destroy
+      conn = put_session(conn, :notices, "Zed's dead, baby. Zed's dead.")
+    end
+    if user_is_current_user, do: conn = delete_session(conn, :user_id)
+    redirect conn, to: "/resources"
+  end
+
+  @prepare :authenticate_user
+  @finalize :authorize_current_user_or_admin
   post "/:id" do
     if current_user_or_admin(conn), do: update(conn.params)
     redirect conn, to: "/users"

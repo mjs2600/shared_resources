@@ -9,6 +9,11 @@
         <%= user.email_address %>
       </a>
     </li>
+    <%= if @current_user.admin do %>
+      <a href="/users/<%=user.id%>/delete" class="btn delete btn-danger">
+        Destroy User
+      </a>
+    <% end %>
   <% end %>
 </ul>
 <a href="/users/new" class="btn btn-primary">Forge You a User</a>
