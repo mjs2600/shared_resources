@@ -18,7 +18,7 @@
         </a>
       <% end %>
       <%= if @current_user && @current_user.admin do %>
-        <a class="btn delete">
+        <a class="btn delete btn-danger">
           Delete
         </a>
       <% end %>
