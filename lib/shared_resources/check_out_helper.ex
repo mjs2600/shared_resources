@@ -12,7 +12,7 @@ defmodule SharedResources.CheckOutHelper do
   end
 
   def status_message(false, resource) do
-    "Find it in the #{resource.location}"
+    "Find it where? #{resource.location}"
   end
 
   def action_text(true) do
