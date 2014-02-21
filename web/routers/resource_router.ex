@@ -43,7 +43,7 @@ defmodule ResourceRouter do
 
   @prepare :authenticate_user
   post "/:id/check-in" do
-    check_in(id, current_user(conn).id)
+    check_in(id, current_user(conn))
     resource = find_by_id(id)
     conn.resp 200, Jsonex.encode [
       check_in: id,

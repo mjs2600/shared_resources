@@ -31,7 +31,7 @@ defmodule SharedResources.Resource do
     end
   
     def checkable?(user, resource) do
-      resource.checked_in? || resource.checked_out_by?(user.id)
+      resource.checked_in? || resource.checked_out_by?(user.id) || user.admin
     end
   end
 
@@ -68,9 +68,9 @@ defmodule SharedResources.Resource do
     Repo.delete(resource)
   end
 
-  def check_in(id, current_user_id) do
+  def check_in(id, current_user) do
     resource = Repo.get(SharedResources.Resource, id)
-    if resource.checked_out_by?(current_user_id) do
+    if resource.checked_out_by?(current_user.id) or current_user.admin do
       resource = resource.user_id(nil)
       Repo.update(resource)
     end
