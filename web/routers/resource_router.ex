@@ -57,7 +57,12 @@ defmodule ResourceRouter do
 
   @prepare :authenticate_user
   post "/:id/check-out" do
-    check_out(id, current_user(conn).id)
+    if conn.params[:user_id] do
+      checkerOuterId = binary_to_integer(conn.params[:user_id], 8)
+    else
+      checkerOuterId = current_user(conn).id
+    end
+    check_out(id, checkerOuterId)
     resource = find_by_id(id)
     conn.resp 200, Jsonex.encode [
       check_out: id,

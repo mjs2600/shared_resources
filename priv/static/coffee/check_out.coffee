@@ -14,8 +14,9 @@ $ ->
     checkoutItem = (target) ->
       resource = $(target).closest('.resource')
       checkedOut = resource.data('checked-out')
+      userId = resource.find('select[name=user_id]').val()
       path = "/resources/#{resource.data('id')}/#{action(checkedOut)}"
-      responseStream = Bacon.fromPromise($.post(path))
+      responseStream = Bacon.fromPromise($.post(path, {user_id: userId}))
       changeInterface(responseStream, target)
 
     changeInterface = (stream, target) ->
@@ -27,6 +28,7 @@ $ ->
         transformResourceData(responseObject.checked_out, @target)
         transformStatusMessage(responseObject.status_message, @target)
         toggleUserMenu(@target)
+        toggleCheckerSelector(@target)
 
     transformActionText = (actionText, $target) ->
       $target.text(actionText)
@@ -43,6 +45,9 @@ $ ->
 
     toggleUserMenu = ($target) ->
       $target.siblings('.user-name').toggle()
+
+    toggleCheckerSelector = ($target) ->
+      $target.siblings('select[name=user_id]').toggle()
 
     action = (checkedOut) ->
       if checkedOut

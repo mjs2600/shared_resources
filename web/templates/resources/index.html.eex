@@ -13,6 +13,15 @@
       </span>
 
       <%= if resource.checkable?(@current_user) do %>
+
+        <%= if @current_user && @current_user.admin do %>
+          <select name="user_id" class="checker_selector" style="<%= if resource.checked_out?, do: 'display:none;' %>">
+            <%= Enum.map @users, fn(user) -> %>
+              <option value="<%= user.id %>" <%= if user.id == @current_user.id, do: 'selected' %>><%= user.name %></option>
+            <% end %>
+          </select>
+        <%= end %>
+
         <a class="btn btn-primary checkout <%= action_element_class(resource.checked_out?) %>">
           <%= action_text(resource.checked_out?) %>
         </a>

@@ -60,6 +60,13 @@ h2 {
   width: 60%;
 }
 
+.resource .checker_selector {
+  position: absolute;
+  right: 130px;
+  top: 20px;
+  width: 110px;
+}
+
 .resource .checkout {
   position: absolute;
   right: 20px;

@@ -3,7 +3,7 @@
   $(function() {
     window.SharedResources || (window.SharedResources = {});
     SharedResources.newCheckout = function() {
-      var action, changeInterface, checkoutItem, createStreams, initializeTextTransformer, toggleUserMenu, transformActionClass, transformActionText, transformResourceData, transformStatusMessage;
+      var action, changeInterface, checkoutItem, createStreams, initializeTextTransformer, toggleCheckerSelector, toggleUserMenu, transformActionClass, transformActionText, transformResourceData, transformStatusMessage;
       createStreams = function() {
         var checkoutElem, checkoutStream;
         checkoutElem = $('.resource').find('.checkout');
@@ -18,11 +18,14 @@
         return targetStream.onValue(checkoutItem);
       };
       checkoutItem = function(target) {
-        var checkedOut, path, resource, responseStream;
+        var checkedOut, path, resource, responseStream, userId;
         resource = $(target).closest('.resource');
         checkedOut = resource.data('checked-out');
+        userId = resource.find('select[name=user_id]').val();
         path = "/resources/" + (resource.data('id')) + "/" + (action(checkedOut));
-        responseStream = Bacon.fromPromise($.post(path));
+        responseStream = Bacon.fromPromise($.post(path, {
+          user_id: userId
+        }));
         return changeInterface(responseStream, target);
       };
       changeInterface = function(stream, target) {
@@ -35,7 +38,8 @@
           transformActionClass(responseObject.action_classes, _this.target);
           transformResourceData(responseObject.checked_out, _this.target);
           transformStatusMessage(responseObject.status_message, _this.target);
-          return toggleUserMenu(_this.target);
+          toggleUserMenu(_this.target);
+          return toggleCheckerSelector(_this.target);
         });
       };
       transformActionText = function(actionText, $target) {
@@ -53,6 +57,9 @@
       };
       toggleUserMenu = function($target) {
         return $target.siblings('.user-name').toggle();
+      };
+      toggleCheckerSelector = function($target) {
+        return $target.siblings('select[name=user_id]').toggle();
       };
       action = function(checkedOut) {
         var route;
@@ -96,8 +103,10 @@
         var path, resource, responseStream;
         resource = $(target).closest('.resource');
         path = "/resources/" + (resource.data('id')) + "/delete";
-        responseStream = Bacon.fromPromise($.post(path));
-        return resource.fadeOut(500);
+        if (confirm("Hey, you sure you want to remove that?")) {
+          responseStream = Bacon.fromPromise($.post(path));
+          return resource.fadeOut(500);
+        }
       };
       return {
         createStreams: createStreams
