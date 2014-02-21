@@ -3,7 +3,6 @@ defmodule UserRouter do
 
   import SharedResources.User
   import ApplicationRouter, only: [authenticate_user: 1]
-  require Exquisite
 
   get "/" do
     conn = conn.assign(:users, index)

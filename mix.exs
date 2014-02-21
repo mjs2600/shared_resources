@@ -22,7 +22,6 @@ defmodule SharedResources.Mixfile do
       { :dynamo, github: "dynamo/dynamo" },
       { :postgrex, github: "ericmj/postgrex" },
       { :ecto, github: "elixir-lang/ecto" },
-      { :amnesia, github: "meh/amnesia" },
       { :jsonex, github: "marcelog/jsonex" },
       { :bcrypt, github: "opscode/erlang-bcrypt" }]
   end

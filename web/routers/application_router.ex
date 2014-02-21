@@ -7,15 +7,15 @@ defmodule ApplicationRouter do
     # any of them or move them to a forwarded router
     conn = conn.fetch([:cookies, :params, :session])
     conn = conn.assign(:current_user, current_user(conn))
-    
+
     conn = conn.assign(:notices, get_session(conn, :notices))
     conn = conn.assign(:errors, get_session(conn, :errors))
     conn = delete_session(conn, :notices)
     conn = delete_session(conn, :errors)
-    
+
     conn.assign :layout, "application_layout"
   end
-  
+
   def current_user(conn) do
     user_id = get_session(conn, :user_id)
     if user_id do

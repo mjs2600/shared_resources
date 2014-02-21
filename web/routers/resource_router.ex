@@ -4,7 +4,6 @@ defmodule ResourceRouter do
   import SharedResources.Resource
   import SharedResources.CheckOutHelper
   import ApplicationRouter, only: [authenticate_user: 1, current_user: 1, authorize_admin: 1]
-  require Exquisite
 
   get "/" do
     conn = conn.assign(:resources, index)
