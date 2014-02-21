@@ -18,6 +18,9 @@
           <a href="/users/logout" class="btn pull-right btn-danger">Log Out</a>
           <a href="/resources/new" class="btn pull-right">Add New Resource</a>
           <a href="/users/new" class="btn pull-right">Add New User</a>
+          <%= if @current_user.admin do %>
+            <a href="/users/" class="btn pull-right">Users</a>
+          <%= end %>
           <a href="/users/<%= @current_user.id %>/edit" class="btn pull-right"><%= @current_user.name %></a>
 
         <% else %>
